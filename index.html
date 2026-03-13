@@ -940,11 +940,18 @@
       position: relative;
       min-width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
 
     .gallery-slide button {
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 0;
       border: 0;
       background: transparent;
@@ -954,8 +961,9 @@
     .gallery-slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center center;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.24));
     }
 
     .gallery-arrow {
@@ -1013,6 +1021,13 @@
     .gallery-meta {
       color: var(--muted);
       font-size: 0.9rem;
+    }
+
+    .gallery-status {
+      color: var(--muted-strong);
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .gallery-dots {
@@ -1808,25 +1823,10 @@
                       <button
                         type="button"
                         class="media-frame-button"
-                        data-lightbox-src="alexis marché.png"
-                        data-lightbox-alt="Alexis dans une affiche de campagne au thème marché."
-                        data-lightbox-caption="Alexis version marché: un visuel plus populaire et local, avec juste ce qu'il faut de recul pour rester drôle."
-                        aria-label="Ouvrir le visuel de campagne 4 en grand"
-                      >
-                        <img
-                          src="alexis marché.png"
-                          alt="Alexis dans une affiche de campagne au thème marché."
-                        >
-                      </button>
-                    </div>
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
                         data-lightbox-src="alexis squash.png"
                         data-lightbox-alt="Alexis dans une affiche de campagne au thème squash."
                         data-lightbox-caption="Alexis version squash: plus sport, plus campagne parallèle, et toujours assez propre pour rester partageable en interne."
-                        aria-label="Ouvrir le visuel de campagne 5 en grand"
+                        aria-label="Ouvrir le visuel de campagne 4 en grand"
                       >
                         <img
                           src="alexis squash.png"
@@ -1841,7 +1841,7 @@
                         data-lightbox-src="fx_wizard.png"
                         data-lightbox-alt="FX dans une affiche de campagne au thème wizard."
                         data-lightbox-caption="FX version wizard: plus fantasy, plus lore, et parfaitement calibré pour enrichir l'univers de campagne."
-                        aria-label="Ouvrir le visuel de campagne 6 en grand"
+                        aria-label="Ouvrir le visuel de campagne 5 en grand"
                       >
                         <img
                           src="fx_wizard.png"
@@ -1856,7 +1856,7 @@
                         data-lightbox-src="fx_dream.png"
                         data-lightbox-alt="FX dans une affiche de campagne au thème dream."
                         data-lightbox-caption="FX version dream: un visuel plus onirique, absurde juste ce qu'il faut, et très fort pour clôturer le carrousel."
-                        aria-label="Ouvrir le visuel de campagne 7 en grand"
+                        aria-label="Ouvrir le visuel de campagne 6 en grand"
                       >
                         <img
                           src="fx_dream.png"
@@ -1878,6 +1878,7 @@
                 <p>Ces visuels donnent du relief et un peu de culture internet à la campagne, tout en gardant un ton assez propre pour un contexte interne. La règle est simple : sourire oui, cringe non.</p>
                 <div class="gallery-footer" aria-label="Navigation de la galerie">
                   <span class="gallery-meta">Cliquez pour ouvrir en grand</span>
+                  <span class="gallery-status" aria-live="polite">01 / 06</span>
                   <div class="gallery-dots">
                     <button class="gallery-dot is-active" type="button" aria-label="Voir l'image 1"></button>
                     <button class="gallery-dot" type="button" aria-label="Voir l'image 2"></button>
@@ -1885,7 +1886,6 @@
                     <button class="gallery-dot" type="button" aria-label="Voir l'image 4"></button>
                     <button class="gallery-dot" type="button" aria-label="Voir l'image 5"></button>
                     <button class="gallery-dot" type="button" aria-label="Voir l'image 6"></button>
-                    <button class="gallery-dot" type="button" aria-label="Voir l'image 7"></button>
                   </div>
                 </div>
               </div>
@@ -2067,7 +2067,11 @@
         var prevButton = gallery.querySelector(".gallery-arrow.prev");
         var nextButton = gallery.querySelector(".gallery-arrow.next");
         var dots = Array.prototype.slice.call(document.querySelectorAll(".gallery-dot"));
+        var galleryStatus = document.querySelector(".gallery-status");
         var activeIndex = 0;
+        var autoplayTimer = null;
+        var touchStartX = 0;
+        var touchDeltaX = 0;
 
         function renderGallery(index) {
           activeIndex = (index + slides.length) % slides.length;
@@ -2075,27 +2079,70 @@
           dots.forEach(function (dot, dotIndex) {
             dot.classList.toggle("is-active", dotIndex === activeIndex);
           });
+          if (galleryStatus) {
+            galleryStatus.textContent = String(activeIndex + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
+          }
+        }
+
+        function stopAutoplay() {
+          if (autoplayTimer) {
+            window.clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        }
+
+        function startAutoplay() {
+          if (prefersReducedMotion) {
+            return;
+          }
+          stopAutoplay();
+          autoplayTimer = window.setInterval(function () {
+            renderGallery(activeIndex + 1);
+          }, 4200);
         }
 
         if (prevButton) {
           prevButton.addEventListener("click", function () {
             renderGallery(activeIndex - 1);
+            startAutoplay();
           });
         }
 
         if (nextButton) {
           nextButton.addEventListener("click", function () {
             renderGallery(activeIndex + 1);
+            startAutoplay();
           });
         }
 
         dots.forEach(function (dot, dotIndex) {
           dot.addEventListener("click", function () {
             renderGallery(dotIndex);
+            startAutoplay();
           });
         });
 
+        gallery.addEventListener("mouseenter", stopAutoplay);
+        gallery.addEventListener("mouseleave", startAutoplay);
+        gallery.addEventListener("focusin", stopAutoplay);
+        gallery.addEventListener("focusout", startAutoplay);
+        gallery.addEventListener("touchstart", function (event) {
+          touchStartX = event.changedTouches[0].clientX;
+          touchDeltaX = 0;
+          stopAutoplay();
+        }, { passive: true });
+        gallery.addEventListener("touchmove", function (event) {
+          touchDeltaX = event.changedTouches[0].clientX - touchStartX;
+        }, { passive: true });
+        gallery.addEventListener("touchend", function () {
+          if (Math.abs(touchDeltaX) > 36) {
+            renderGallery(activeIndex + (touchDeltaX < 0 ? 1 : -1));
+          }
+          startAutoplay();
+        }, { passive: true });
+
         renderGallery(0);
+        startAutoplay();
       }
 
       if (lightbox) {
