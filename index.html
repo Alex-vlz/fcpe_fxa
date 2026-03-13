@@ -510,6 +510,44 @@
       line-height: 1.55;
     }
 
+    .hero-mini-media {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .hero-mini-video {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-mini-video video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #03060b;
+    }
+
+    .hero-mini-video-body {
+      padding: 12px 14px 14px;
+    }
+
+    .hero-mini-video-body strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-mini-video-body span {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
     .hero-data-row {
       display: grid;
       gap: 12px;
@@ -1251,6 +1289,10 @@
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .hero-mini-media {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1335,7 +1377,7 @@
                     <article class="meta-card">
                       <span class="meta-label">Leur style</span>
                       <strong>Curieux, pragmatiques, probablement capables de poser les bonnes questions</strong>
-                      <p>Oui, le slogan a été testé en interne. Non, il n'a pas été confié à un comité de buzzwords.</p>
+                      <p>Oui, le slogan a été testé en interne.</p>
                     </article>
                   </div>
 
@@ -1359,6 +1401,29 @@
                     <span>Un visuel qui assume un peu de dramaturgie, tout en gardant le fond très concret : défendre les intérêts des salariés actionnaires.</span>
                   </figcaption>
                 </figure>
+
+                <div class="hero-mini-media reveal" aria-label="Portraits vidéo institutionnels">
+                  <article class="hero-mini-video">
+                    <video controls preload="metadata" poster="duo-affiche.png">
+                      <source src="alexis institutionnel.mp4" type="video/mp4">
+                      Votre navigateur ne prend pas en charge la lecture vidéo.
+                    </video>
+                    <div class="hero-mini-video-body">
+                      <strong>Alexis, version institutionnelle</strong>
+                      <span>Un format court, clair et plus posé pour compléter le manifeste.</span>
+                    </div>
+                  </article>
+                  <article class="hero-mini-video">
+                    <video controls preload="metadata" poster="duo-editorial.png">
+                      <source src="fx institutionnel.mp4" type="video/mp4">
+                      Votre navigateur ne prend pas en charge la lecture vidéo.
+                    </video>
+                    <div class="hero-mini-video-body">
+                      <strong>FX, version institutionnelle</strong>
+                      <span>Le pendant plus personnel du duo, dans un cadre plus direct.</span>
+                    </div>
+                  </article>
+                </div>
 
                 <div class="hero-data-row">
                   <div class="hero-stat">
@@ -1408,16 +1473,6 @@
                 <span class="metric-kicker">Ce qui est attendu</span>
                 <p class="metric-panel-value">Expliquer simplement</p>
                 <p>Un bon représentant doit pouvoir rendre le sujet lisible, même pour celles et ceux qui ne vivent pas dans des tableaux ou des présentations finance.</p>
-              </article>
-              <article class="metric-panel">
-                <span class="metric-kicker">Ce qui change avec FX &amp; Alexis</span>
-                <p class="metric-panel-value">Une présence utile</p>
-                <p>Leur proposition tient en peu de mots : curiosité, méthode, pragmatisme, et un vrai réflexe de questions bien posées.</p>
-              </article>
-              <article class="metric-panel">
-                <span class="metric-kicker">Le ton de la campagne</span>
-                <p class="metric-panel-value">Sérieux, sans se prendre trop au sérieux</p>
-                <p>Assez premium pour être crédible. Assez vivant pour être mémorable. Suffisamment humain pour donner envie de voter, pas juste de fermer l'onglet.</p>
               </article>
             </div>
           </div>
