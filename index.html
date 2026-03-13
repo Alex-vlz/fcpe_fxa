@@ -524,11 +524,73 @@
       background: rgba(255, 255, 255, 0.03);
     }
 
+    .hero-mini-video-frame {
+      position: relative;
+      background: #03060b;
+    }
+
     .hero-mini-video video {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       background: #03060b;
+    }
+
+    .hero-mini-video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border: 0;
+      background: linear-gradient(180deg, rgba(3, 6, 11, 0.12), rgba(3, 6, 11, 0.72) 74%, rgba(3, 6, 11, 0.9));
+      color: var(--text);
+      cursor: pointer;
+      transition: opacity 180ms ease;
+    }
+
+    .hero-mini-video.is-playing .hero-mini-video-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero-mini-play {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-mini-play svg {
+      width: 18px;
+      height: 18px;
+      margin-left: 2px;
+      fill: currentColor;
+    }
+
+    .hero-mini-overlay-copy {
+      display: grid;
+      gap: 4px;
+      text-align: left;
+    }
+
+    .hero-mini-overlay-copy strong {
+      font-size: 0.95rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-mini-overlay-copy span {
+      color: var(--muted-strong);
+      font-size: 0.84rem;
+      line-height: 1.45;
     }
 
     .hero-mini-video-body {
@@ -1403,21 +1465,43 @@
                 </figure>
 
                 <div class="hero-mini-media reveal" aria-label="Portraits vidéo institutionnels">
-                  <article class="hero-mini-video">
-                    <video controls preload="metadata" poster="duo-affiche.png">
-                      <source src="alexis institutionnel.mp4" type="video/mp4">
-                      Votre navigateur ne prend pas en charge la lecture vidéo.
-                    </video>
+                  <article class="hero-mini-video" data-hero-video-card>
+                    <div class="hero-mini-video-frame">
+                      <video preload="metadata" playsinline poster="duo-affiche.png">
+                        <source src="alexis institutionnel.mp4" type="video/mp4">
+                        Votre navigateur ne prend pas en charge la lecture vidéo.
+                      </video>
+                      <button class="hero-mini-video-overlay" type="button" data-hero-video-trigger aria-label="Lire la vidéo institutionnelle d'Alexis">
+                        <span class="hero-mini-play" aria-hidden="true">
+                          <svg viewBox="0 0 24 24"><path d="M8 6l10 6-10 6z"></path></svg>
+                        </span>
+                        <span class="hero-mini-overlay-copy">
+                          <strong>Lire le portrait d'Alexis</strong>
+                          <span>8 secondes, format teaser</span>
+                        </span>
+                      </button>
+                    </div>
                     <div class="hero-mini-video-body">
                       <strong>Alexis, version institutionnelle</strong>
                       <span>Un format court, clair et plus posé pour compléter le manifeste.</span>
                     </div>
                   </article>
-                  <article class="hero-mini-video">
-                    <video controls preload="metadata" poster="duo-editorial.png">
-                      <source src="fx institutionnel.mp4" type="video/mp4">
-                      Votre navigateur ne prend pas en charge la lecture vidéo.
-                    </video>
+                  <article class="hero-mini-video" data-hero-video-card>
+                    <div class="hero-mini-video-frame">
+                      <video preload="metadata" playsinline poster="duo-editorial.png">
+                        <source src="fx institutionnel.mp4" type="video/mp4">
+                        Votre navigateur ne prend pas en charge la lecture vidéo.
+                      </video>
+                      <button class="hero-mini-video-overlay" type="button" data-hero-video-trigger aria-label="Lire la vidéo institutionnelle de FX">
+                        <span class="hero-mini-play" aria-hidden="true">
+                          <svg viewBox="0 0 24 24"><path d="M8 6l10 6-10 6z"></path></svg>
+                        </span>
+                        <span class="hero-mini-overlay-copy">
+                          <strong>Lire le portrait de FX</strong>
+                          <span>8 secondes, format teaser</span>
+                        </span>
+                      </button>
+                    </div>
                     <div class="hero-mini-video-body">
                       <strong>FX, version institutionnelle</strong>
                       <span>Le pendant plus personnel du duo, dans un cadre plus direct.</span>
@@ -2028,6 +2112,50 @@
           }
         });
       }
+
+      var heroVideoCards = document.querySelectorAll("[data-hero-video-card]");
+
+      heroVideoCards.forEach(function (card) {
+        var video = card.querySelector("video");
+        var trigger = card.querySelector("[data-hero-video-trigger]");
+
+        function setPlayingState(isPlaying) {
+          card.classList.toggle("is-playing", isPlaying);
+          if (isPlaying) {
+            video.setAttribute("controls", "");
+          } else {
+            video.removeAttribute("controls");
+          }
+        }
+
+        if (trigger && video) {
+          trigger.addEventListener("click", function () {
+            heroVideoCards.forEach(function (otherCard) {
+              if (otherCard !== card) {
+                var otherVideo = otherCard.querySelector("video");
+                if (otherVideo) {
+                  otherVideo.pause();
+                  otherVideo.currentTime = 0;
+                  otherVideo.removeAttribute("controls");
+                }
+                otherCard.classList.remove("is-playing");
+              }
+            });
+
+            setPlayingState(true);
+            video.play();
+          });
+
+          video.addEventListener("play", function () {
+            setPlayingState(true);
+          });
+
+          video.addEventListener("ended", function () {
+            video.currentTime = 0;
+            setPlayingState(false);
+          });
+        }
+      });
     })();
   </script>
 </body>
