@@ -1091,6 +1091,26 @@
       backdrop-filter: blur(12px);
     }
 
+    .media-badge-new {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffb870, #ff7b72);
+      color: #201208;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(255, 123, 114, 0.28);
+    }
+
     .media-note {
       margin-top: 18px;
       padding: 16px 18px;
@@ -1743,6 +1763,36 @@
           <div class="media-grid">
             <article class="media-card reveal">
               <div class="media-frame">
+                <span class="media-badge">Sondage FCPE</span>
+                <span class="media-badge-new">New</span>
+                <video controls preload="metadata" playsinline>
+                  <source src="sondage_FCPE.mp4" type="video/mp4">
+                  Votre navigateur ne prend pas en charge la lecture vidéo.
+                </video>
+              </div>
+              <div class="media-copy">
+                <strong>Le sondage FCPE</strong>
+                <p>Un nouveau format ajouté à la campagne pour donner plus de relief au dispositif et montrer que la présence media continue de s'enrichir.</p>
+              </div>
+            </article>
+
+            <article class="media-card reveal">
+              <div class="media-frame">
+                <span class="media-badge">Votez Yann</span>
+                <span class="media-badge-new">New</span>
+                <video controls preload="metadata" playsinline>
+                  <source src="votezyann.mp4" type="video/mp4">
+                  Votre navigateur ne prend pas en charge la lecture vidéo.
+                </video>
+              </div>
+              <div class="media-copy">
+                <strong>Votez Yann</strong>
+                <p>Un autre nouvel ajout video pour étoffer la campagne avec une capsule plus directe, identifiable immédiatement comme contenu frais dans la sélection media.</p>
+              </div>
+            </article>
+
+            <article class="media-card reveal">
+              <div class="media-frame">
                 <span class="media-badge">Vidéo manifeste</span>
                 <video controls preload="metadata" poster="spot_principal.png">
                   <source src="fcpe_vote_alexis_fx.mp4" type="video/mp4">
@@ -1766,34 +1816,6 @@
               <div class="media-copy">
                 <strong>Le décryptage version internet-native</strong>
                 <p>Une respiration volontairement plus absurde, pour les collègues qui parlent aussi en références TikTok, YTP et lore inutilement précis. Le cadre reste simple : une blague qui sert la mémorisation, pas l'inverse.</p>
-              </div>
-            </article>
-
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Nouveau media • Sondage FCPE</span>
-                <video controls preload="metadata" playsinline>
-                  <source src="sondage_FCPE.mp4" type="video/mp4">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Le sondage FCPE</strong>
-                <p>Un nouveau format ajouté à la campagne pour donner plus de relief au dispositif et montrer que la présence media continue de s'enrichir.</p>
-              </div>
-            </article>
-
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Nouveau media • Votez Yann</span>
-                <video controls preload="metadata" playsinline>
-                  <source src="votezyann.mp4" type="video/mp4">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Votez Yann</strong>
-                <p>Un autre nouvel ajout video pour étoffer la campagne avec une capsule plus directe, identifiable immédiatement comme contenu frais dans la sélection media.</p>
               </div>
             </article>
 
