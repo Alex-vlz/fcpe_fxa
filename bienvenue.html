@@ -767,7 +767,7 @@
               <p>Nos collaborateurs les plus affûtés vous permettent de faire exploser la valeur de part.</p>
             </div>
             <div class="game-cta-action" style="flex-shrink:0;">
-              <a href="https://8bits-ads.pages.dev" target="_blank" rel="noopener noreferrer" class="btn-game" id="btn-launch-game" onclick="launchGame()">
+              <a href="#" class="btn-game" id="btn-launch-game" onclick="launchGame(event)">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 Lancer le jeu
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -838,6 +838,20 @@ Pourlecollectif.ch
   </div>
 </div>
 
+
+<!-- Modal simulateur débloqué -->
+<div id="unlock-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(7,17,31,0.78); backdrop-filter:blur(10px); padding:24px;">
+  <div style="position:relative; overflow:hidden; width:min(100%,460px); border-radius:32px; border:1px solid rgba(138,168,255,0.3); background:linear-gradient(140deg,rgba(14,26,44,0.99),rgba(8,16,28,0.97)); padding:48px 36px 36px; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.5);">
+    <div style="position:absolute;width:300px;height:300px;top:-120px;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(138,168,255,0.18),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
+    <div style="font-size:3rem;margin-bottom:16px;">🔓</div>
+    <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3.5vw,2rem);letter-spacing:-0.05em;line-height:1.1;">Simulateur <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">débloqué&nbsp;!</span></h2>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.72;margin:0 0 28px;">Vous avez lancé le jeu — le simulateur d'investissement est maintenant accessible. Bonne chance pour faire grimper la valeur.</p>
+    <button onclick="closeUnlock()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 24px;border-radius:999px;border:1px solid rgba(138,168,255,0.35);background:linear-gradient(135deg,rgba(138,168,255,0.18),rgba(119,231,194,0.12));color:var(--text);font-size:0.98rem;font-weight:600;cursor:pointer;transition:transform 180ms ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Lancer le jeu et accéder au simulateur
+    </button>
+  </div>
+</div>
 
 <!-- Justificatif -->
 <div id="justif-overlay">
@@ -1015,8 +1029,26 @@ Pourlecollectif.ch
     startMoneyRain();
   }
 
-  function launchGame() {
+  function launchGame(e) {
+    e.preventDefault();
+    const isFirst = localStorage.getItem('plc_game_played') !== 'true';
     localStorage.setItem('plc_game_played', 'true');
+
+    if (isFirst) {
+      // Montrer la modal d'abord
+      const overlay = document.getElementById('unlock-overlay');
+      overlay.style.display = 'flex';
+      if (lock) lock.style.display = 'none';
+    } else {
+      // Déjà joué, ouvrir directement
+      window.open('https://8bits-ads.pages.dev', '_blank');
+    }
+  }
+
+  function closeUnlock() {
+    document.getElementById('unlock-overlay').style.display = 'none';
+    // Ouvrir le jeu après fermeture de la modal
+    window.open('https://8bits-ads.pages.dev', '_blank');
   }
 
   function startMoneyRain() {
