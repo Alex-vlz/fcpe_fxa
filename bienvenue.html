@@ -421,10 +421,289 @@
       font-size: 0.82rem;
     }
 
+    /* ── Confettis ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    /* ── Modal cadeau ── */
+    #gift-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7, 17, 31, 0.72);
+      backdrop-filter: blur(8px);
+      padding: 24px;
+      transition: opacity 0.3s ease;
+    }
+
+    .gift-card {
+      position: relative;
+      overflow: hidden;
+      width: min(100%, 520px);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 184, 112, 0.35);
+      background: linear-gradient(140deg, rgba(14, 26, 44, 0.98), rgba(8, 16, 28, 0.95));
+      box-shadow: 0 40px 100px rgba(0,0,0,0.4), 0 0 60px rgba(255,184,112,0.12);
+      padding: 48px 40px 40px;
+      text-align: center;
+      transform: scale(0.88);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .gift-card::before {
+      content: "";
+      position: absolute;
+      width: 320px; height: 320px;
+      top: -140px; left: 50%; transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,184,112,0.18), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .dollar-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      box-shadow: 0 0 40px rgba(255,184,112,0.45);
+      font-size: 2.6rem;
+      margin: 0 auto 24px;
+      animation: pulse 2s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(255,184,112,0.45); }
+      50%       { box-shadow: 0 0 70px rgba(255,184,112,0.7); }
+    }
+
+    .gift-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .gift-card h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gift-card p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.72;
+    }
+
+    .gift-ticket {
+      margin: 0 0 28px;
+      padding: 20px 24px;
+      border-radius: 18px;
+      border: 2px dashed rgba(255,184,112,0.4);
+      background: rgba(255,184,112,0.05);
+      font-size: 0.88rem;
+      color: var(--muted-strong);
+      line-height: 1.6;
+    }
+
+    .gift-ticket strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .btn-clip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.4);
+      background: linear-gradient(135deg, rgba(255,184,112,0.18), rgba(255,140,58,0.12));
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      margin-bottom: 16px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-clip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,184,112,0.7);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .btn-close-gift {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .btn-close-gift:hover { color: var(--text); }
+
+    /* ── Badge dollar sur la page ── */
+    #dollar-badge-wrap {
+      display: none;
+      margin: 24px auto 0;
+      width: fit-content;
+    }
+
+    #dollar-badge-wrap.visible {
+      display: block;
+    }
+
+    #dollar-badge-wrap.visible {
+      display: block;
+      animation: badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+
+    @keyframes badgePop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    #dollar-badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.5);
+      background: linear-gradient(135deg, rgba(255,184,112,0.2), rgba(255,140,58,0.14));
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 24px rgba(255,184,112,0.2);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    #dollar-badge-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 40px rgba(255,184,112,0.3);
+    }
+
+    /* ── Justificatif overlay ── */
+    #justif-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7,17,31,0.8);
+      backdrop-filter: blur(10px);
+      padding: 24px;
+    }
+
+    .justif-card {
+      width: min(100%, 480px);
+      border-radius: 24px;
+      border: 2px dashed rgba(255,184,112,0.5);
+      background: linear-gradient(140deg, rgba(14,26,44,0.99), rgba(8,16,28,0.97));
+      padding: 40px 36px;
+      text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+
+    .justif-card .justif-dollar {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .justif-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+    }
+
+    .justif-card h3 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .justif-ref {
+      display: inline-block;
+      margin: 16px 0;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: rgba(255,184,112,0.08);
+      border: 1px solid rgba(255,184,112,0.25);
+      font-family: monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      color: #ffb870;
+    }
+
+    .justif-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+
+    .justif-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-justif-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.4);
+      background: linear-gradient(135deg, rgba(255,184,112,0.18), rgba(255,140,58,0.12));
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease;
+    }
+
+    .btn-justif-share:hover { transform: translateY(-1px); }
+
+    .btn-justif-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     @media (max-width: 640px) {
       .hero { padding: 48px 0 40px; }
       .game-cta-card { padding: 36px 24px; }
       .tv-card img { max-height: 280px; }
+      .gift-card { padding: 36px 24px 28px; }
     }
   </style>
 </head>
@@ -456,6 +735,16 @@
         Ici, pas de grande messe ni de rapport annuel de 80 pages.
         Juste des contenus utiles, un peu décalés, pour rester au courant et s'impliquer quand ça compte.
       </p>
+      <div id="dollar-badge-wrap">
+        <button id="dollar-badge-btn" onclick="showJustif()">
+          💵 Récupérer Mon Dollar.ch
+        </button>
+      </div>
+      <div style="margin-top:16px;">
+        <button id="btn-reopen-gift" onclick="openGift()" style="display:none;background:none;border:none;color:var(--muted);font-size:0.85rem;cursor:pointer;text-decoration:underline;">
+          🎁 Activer mon cadeau de bienvenue
+        </button>
+      </div>
     </div>
   </section>
 
@@ -531,6 +820,42 @@ Pourlecollectif.ch
   </footer>
 
 </div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Modal cadeau de bienvenue -->
+<div id="gift-overlay">
+  <div class="gift-card">
+    <div class="dollar-badge">💵</div>
+    <h2><em>Mon premier dollar.ch</em></h2>
+    <p>Pour récupérer ce dollar je dois activer ce cadeau.</p>
+    <button class="btn-clip" onclick="activateGift()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Activer mon cadeau
+    </button>
+    <button class="btn-close-gift" onclick="closeGift()">Plus tard</button>
+  </div>
+</div>
+
+
+<!-- Justificatif -->
+<div id="justif-overlay">
+  <div class="justif-card">
+    <span class="justif-dollar">💵</span>
+    <h3><em>Mon premier dollar.ch</em></h3>
+    <div class="justif-ref" id="justif-ref">PLCB-000000</div>
+    <p>Présentez ce justificatif à un membre fondateur du mouvement pour récupérer votre cadeau de bienvenue.</p>
+    <div class="justif-actions">
+      <button class="btn-justif-share" onclick="shareJustif()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Partager / copier le lien
+      </button>
+      <button class="btn-justif-close" onclick="hideJustif()">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <div id="money-rain"></div>
 
 <script>
@@ -543,15 +868,149 @@ Pourlecollectif.ch
     window.location.replace('index.html');
   }
 
+  // ── Confettis ──
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  let pieces = [];
+  let animating = false;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function launchConfetti() {
+    const colors = ['#ffb870','#77e7c2','#8aa8ff','#ff6b6b','#ffd700','#ff8c3a','#ffffff'];
+    for (let i = 0; i < 220; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: -10 - Math.random() * 200,
+        w: 8 + Math.random() * 8,
+        h: 4 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 4,
+        vy: 2 + Math.random() * 4,
+        rot: Math.random() * Math.PI * 2,
+        vrot: (Math.random() - 0.5) * 0.2,
+        opacity: 1,
+      });
+    }
+    if (!animating) animateConfetti();
+  }
+
+  function animateConfetti() {
+    animating = true;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces = pieces.filter(p => p.opacity > 0.05);
+    pieces.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vrot;
+      if (p.y > canvas.height * 0.75) p.opacity -= 0.018;
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    if (pieces.length > 0) requestAnimationFrame(animateConfetti);
+    else { animating = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  }
+
+  // ── Cadeau ──
+  const giftOverlay = document.getElementById('gift-overlay');
+  const giftActivated = localStorage.getItem('plc_gift_activated') === 'true';
+
+  function openGift() {
+    giftOverlay.style.display = 'flex';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        giftOverlay.style.opacity = '1';
+        giftOverlay.querySelector('.gift-card').style.transform = 'scale(1)';
+      });
+    });
+  }
+
+  if (!giftActivated) {
+    setTimeout(() => {
+      launchConfetti();
+      openGift();
+    }, 400);
+  }
+
+  // Génère un code unique par appareil
+  function getRef() {
+    let ref = localStorage.getItem('plc_dollar_ref');
+    if (!ref) {
+      ref = 'PLCB-' + Math.random().toString(36).substring(2,8).toUpperCase();
+      localStorage.setItem('plc_dollar_ref', ref);
+    }
+    return ref;
+  }
+
+  function activateGift() {
+    localStorage.setItem('plc_gift_activated', 'true');
+    closeGift();
+    showBadge();
+    document.getElementById('btn-reopen-gift').style.display = 'none';
+  }
+
+  function closeGift() {
+    giftOverlay.style.opacity = '0';
+    giftOverlay.querySelector('.gift-card').style.transform = 'scale(0.88)';
+    setTimeout(() => giftOverlay.style.display = 'none', 300);
+    // Si pas encore activé, afficher le bouton rouvrir
+    if (localStorage.getItem('plc_gift_activated') !== 'true') {
+      document.getElementById('btn-reopen-gift').style.display = 'inline-flex';
+    }
+  }
+
+  function showBadge() {
+    const wrap = document.getElementById('dollar-badge-wrap');
+    wrap.classList.add('visible');
+  }
+
+  function showJustif() {
+    document.getElementById('justif-ref').textContent = getRef();
+    const overlay = document.getElementById('justif-overlay');
+    overlay.style.display = 'flex';
+  }
+
+  function hideJustif() {
+    document.getElementById('justif-overlay').style.display = 'none';
+  }
+
+  function shareJustif() {
+    const ref = getRef();
+    const text = `Mon premier dollar.ch — Référence : ${ref} — ${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({ title: 'Mon premier dollar.ch', text });
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.btn-justif-share');
+        btn.textContent = '✓ Copié !';
+        setTimeout(() => btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Partager / copier le lien`, 2000);
+      });
+    }
+  }
+
+  // Afficher le badge si déjà activé
+  if (localStorage.getItem('plc_gift_activated') === 'true') {
+    showBadge();
+  }
+
+  // ── Simulateur verrouillage ──
   const hasPlayed = localStorage.getItem('plc_game_played') === 'true';
   const lock = document.getElementById('simulator-lock');
   const isFirstUnlock = localStorage.getItem('plc_game_unlocked_shown') !== 'true';
 
-  // Verrouillage / déverrouillage simulateur
   if (!hasPlayed) {
     lock.style.display = 'flex';
   } else if (isFirstUnlock) {
-    // Première fois qu'on revient après avoir joué → pluie de billets
     localStorage.setItem('plc_game_unlocked_shown', 'true');
     startMoneyRain();
   }
@@ -564,7 +1023,6 @@ Pourlecollectif.ch
     const container = document.getElementById('money-rain');
     const emojis = ['💵', '💴', '💶', '💷', '💸', '🤑', '💰'];
     const total = 180;
-
     for (let i = 0; i < total; i++) {
       setTimeout(() => {
         const bill = document.createElement('span');
