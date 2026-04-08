@@ -3,11 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FX &amp; Alexis | Conseil de Surveillance du FCPE Valiuz</title>
-  <meta
-    name="description"
-    content="FX et Alexis se présentent au Conseil de Surveillance du FCPE Valiuz avec une approche claire, pragmatique et tournée vers l'intérêt des salariés actionnaires."
-  >
+  <title>Pourlecollectif.ch — Rejoignez le mouvement</title>
+  <meta name="description" content="Rejoignez le mouvement Pourlecollectif.ch et mobilisez-vous pour un projet commun de co-actionnaires.">
   <style>
     :root {
       --bg: #07111f;
@@ -26,8 +23,6 @@
       --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
       --radius: 28px;
       --radius-sm: 18px;
-      --max-width: 1220px;
-      --nav-height: 74px;
     }
 
     * {
@@ -41,13 +36,12 @@
     body {
       margin: 0;
       min-width: 320px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(138, 168, 255, 0.18), transparent 26%),
-        radial-gradient(circle at 85% 12%, rgba(119, 231, 194, 0.13), transparent 24%),
-        radial-gradient(circle at 50% 120%, rgba(255, 184, 112, 0.08), transparent 28%),
-        linear-gradient(180deg, #07111f 0%, #0a1220 26%, #08131d 100%);
+      background: #07111f;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -74,2200 +68,510 @@
     }
 
     a {
-      color: inherit;
+      color: var(--accent-2);
       text-decoration: none;
     }
 
-    img,
-    video {
-      display: block;
-      max-width: 100%;
+    a:hover {
+      text-decoration: underline;
     }
 
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-
-    .page {
+    /* ── Panneau image gauche ── */
+    .split-image {
       position: relative;
-      z-index: 1;
+      overflow: hidden;
+      min-height: 100vh;
     }
 
-    .container {
-      width: min(calc(100% - 32px), var(--max-width));
-      margin: 0 auto;
+    .split-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .progress-bar {
-      position: fixed;
-      inset: 0 0 auto;
-      height: 3px;
-      z-index: 60;
-      background: rgba(255, 255, 255, 0.04);
-      transform-origin: 0 50%;
-    }
-
-    .progress-bar::after {
-      content: "";
+    .split-image-overlay {
       position: absolute;
       inset: 0;
-      transform-origin: 0 50%;
-      transform: scaleX(var(--progress, 0));
-      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-      box-shadow: 0 0 24px rgba(138, 168, 255, 0.45);
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(5, 11, 20, 0.72);
-      backdrop-filter: blur(22px) saturate(145%);
-    }
-
-    .topbar-inner {
-      min-height: var(--nav-height);
+      background:
+        linear-gradient(to right, rgba(7,17,31,0.18), rgba(7,17,31,0.52)),
+        linear-gradient(to top, rgba(7,17,31,0.72) 0%, transparent 50%);
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      width: 15px;
-      height: 15px;
-      flex: 0 0 auto;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 30px rgba(138, 168, 255, 0.42);
-    }
-
-    .brand-copy {
-      display: grid;
-      gap: 2px;
-      min-width: 0;
-      line-height: 1.1;
-    }
-
-    .brand-copy strong {
-      font-size: 0.98rem;
-      letter-spacing: -0.03em;
-      white-space: nowrap;
-    }
-
-    .brand-copy span {
-      color: var(--muted);
-      font-size: 0.78rem;
-      white-space: nowrap;
-    }
-
-    .nav {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      padding: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 999px;
-    }
-
-    .nav a {
-      padding: 9px 14px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-    }
-
-    .nav a:hover,
-    .nav a:focus-visible,
-    .nav a.is-active {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.08);
-      outline: none;
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(119, 231, 194, 0.28);
-      background: rgba(119, 231, 194, 0.08);
-      color: var(--text);
-      font-size: 0.92rem;
-      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-    }
-
-    .nav-cta:hover,
-    .nav-cta:focus-visible {
-      transform: translateY(-1px);
-      border-color: rgba(119, 231, 194, 0.56);
-      background: rgba(119, 231, 194, 0.12);
-      outline: none;
-    }
-
-    .section {
-      position: relative;
-      padding: 88px 0;
-    }
-
-    .section + .section .section-inner {
-      padding-top: 88px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .section-label::before {
-      content: "";
-      width: 34px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-    }
-
-    .section-title {
-      margin: 0 0 16px;
-      max-width: 12ch;
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-    }
-
-    .section-copy {
+    .split-image-overlay blockquote {
       margin: 0;
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.82;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      max-width: 18ch;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted-strong);
-      font-size: 0.82rem;
+    .split-image-overlay blockquote em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .split-image-overlay cite {
+      display: block;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-style: normal;
       letter-spacing: 0.02em;
     }
 
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 16px rgba(138, 168, 255, 0.4);
-    }
-
-    .hero {
-      padding: 34px 0 54px;
-      min-height: calc(100vh - var(--nav-height));
+    /* ── Panneau formulaire droite ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      padding: 48px 40px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(138, 168, 255, 0.14), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(119, 231, 194, 0.1), transparent 50%),
+        linear-gradient(180deg, #07111f 0%, #0a1220 100%);
     }
 
-    .hero-shell {
+    .card {
       position: relative;
-      overflow: clip;
+      overflow: hidden;
+      width: min(100%, 520px);
       border-radius: 36px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background:
         linear-gradient(140deg, rgba(12, 22, 38, 0.96), rgba(7, 14, 26, 0.88)),
         rgba(11, 20, 35, 0.92);
       box-shadow: var(--shadow);
-      isolation: isolate;
+      padding: 52px 44px 48px;
+      text-align: center;
     }
 
-    .hero-shell::before,
-    .hero-shell::after {
+    .card::before,
+    .card::after {
       content: "";
       position: absolute;
       border-radius: 50%;
       filter: blur(28px);
       pointer-events: none;
-      opacity: 0.8;
+      opacity: 0.7;
     }
 
-    .hero-shell::before {
-      width: 420px;
-      height: 420px;
-      top: -180px;
-      right: -100px;
-      background: radial-gradient(circle, rgba(138, 168, 255, 0.3), transparent 70%);
-    }
-
-    .hero-shell::after {
+    .card::before {
       width: 360px;
       height: 360px;
-      bottom: -160px;
-      left: -80px;
-      background: radial-gradient(circle, rgba(119, 231, 194, 0.18), transparent 70%);
+      top: -160px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(138, 168, 255, 0.28), transparent 70%);
     }
 
-    .hero-grid {
+    .card::after {
+      width: 300px;
+      height: 300px;
+      bottom: -140px;
+      left: -60px;
+      background: radial-gradient(circle, rgba(119, 231, 194, 0.16), transparent 70%);
+    }
+
+    .card-inner {
       position: relative;
       z-index: 1;
-      display: grid;
-      gap: 28px;
-      padding: 28px;
     }
 
-    .hero-copy-wrap h1 {
-      margin: 16px 0 18px;
-      max-width: 10.6ch;
-      font-size: clamp(3.1rem, 7vw, 7rem);
-      line-height: 0.9;
-      letter-spacing: -0.09em;
-    }
-
-    .hero-copy-wrap h1 span {
-      display: block;
-      color: var(--muted-strong);
-      font-size: 0.5em;
-      letter-spacing: -0.05em;
-      line-height: 1;
-      margin-top: 16px;
-    }
-
-    .hero-lead {
-      margin: 0;
-      max-width: 700px;
-      font-size: clamp(1.08rem, 2vw, 1.34rem);
-      color: var(--muted-strong);
-      line-height: 1.7;
-    }
-
-    .hero-lead strong {
-      color: var(--text);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
-      min-height: 50px;
-      padding: 0 18px;
+      padding: 9px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      font-size: 0.98rem;
-      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-      outline: none;
-    }
-
-    .button-primary {
-      border-color: rgba(119, 231, 194, 0.3);
-      background: linear-gradient(135deg, rgba(119, 231, 194, 0.16), rgba(138, 168, 255, 0.12));
-    }
-
-    .button-primary:hover,
-    .button-primary:focus-visible {
-      border-color: rgba(119, 231, 194, 0.6);
-      background: linear-gradient(135deg, rgba(119, 231, 194, 0.22), rgba(138, 168, 255, 0.18));
-    }
-
-    .hero-meta {
-      display: grid;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .meta-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .meta-card,
-    .glass-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03)),
-        rgba(255, 255, 255, 0.02);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    }
-
-    .meta-card {
-      padding: 18px;
-    }
-
-    .meta-card .meta-label {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--muted);
+      color: var(--muted-strong);
       font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
     }
 
-    .meta-card strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.02rem;
-      letter-spacing: -0.03em;
-    }
-
-    .meta-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    .hero-visual {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .hero-image-card {
-      min-height: 100%;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      background:
-        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.08), transparent 34%),
-        linear-gradient(180deg, rgba(12, 20, 32, 0.92), rgba(8, 15, 25, 0.96));
-    }
-
-    .hero-image-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      aspect-ratio: 4 / 5;
-    }
-
-    .hero-image-note {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(4, 10, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-    }
-
-    .hero-image-note strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-image-note span {
-      color: var(--muted-strong);
-      font-size: 0.92rem;
-      line-height: 1.55;
-    }
-
-    .hero-mini-media {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .hero-mini-video {
-      overflow: hidden;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .hero-mini-video-frame {
-      position: relative;
-      background: #03060b;
-    }
-
-    .hero-mini-video video {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
-      object-position: center center;
-      background: #03060b;
-    }
-
-    .hero-mini-video-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px;
-      border: 0;
-      background: linear-gradient(180deg, rgba(3, 6, 11, 0.12), rgba(3, 6, 11, 0.72) 74%, rgba(3, 6, 11, 0.9));
-      color: var(--text);
-      cursor: pointer;
-      transition: opacity 180ms ease;
-    }
-
-    .hero-mini-video.is-playing .hero-mini-video-overlay {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .hero-mini-play {
-      width: 54px;
-      height: 54px;
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.24);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(138, 168, 255, 0.5);
+      flex-shrink: 0;
     }
 
-    .hero-mini-play svg {
-      width: 18px;
-      height: 18px;
-      margin-left: 2px;
-      fill: currentColor;
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
     }
 
-    .hero-mini-overlay-copy {
-      display: grid;
-      gap: 4px;
-      text-align: left;
-    }
-
-    .hero-mini-overlay-copy strong {
-      font-size: 0.95rem;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-mini-overlay-copy span {
-      color: var(--muted-strong);
-      font-size: 0.84rem;
-      line-height: 1.45;
-    }
-
-    .hero-mini-video-body {
-      padding: 12px 14px 14px;
-    }
-
-    .hero-mini-video-body strong {
+    h1 .site-name {
       display: block;
-      margin-bottom: 4px;
-      font-size: 0.95rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 0.68em;
       letter-spacing: -0.03em;
-    }
-
-    .hero-mini-video-body span {
-      color: var(--muted);
-      font-size: 0.84rem;
-      line-height: 1.5;
-    }
-
-    .hero-data-row {
-      display: grid;
-      gap: 12px;
-    }
-
-    .hero-stat {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 18px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .hero-stat span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .hero-stat strong {
-      font-size: 1.02rem;
-      letter-spacing: -0.03em;
-      text-align: right;
-    }
-
-    .strip {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .strip-card {
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .strip-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .strip-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.65;
-    }
-
-    .metrics-grid,
-    .responsibility-grid,
-    .reasons-grid,
-    .timeline,
-    .media-grid,
-    .candidate-grid,
-    .practical-grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .metric-panel,
-    .responsibility-card,
-    .reason-card,
-    .timeline-card,
-    .candidate-card,
-    .practical-card {
-      padding: 22px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
-        rgba(255, 255, 255, 0.03);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    }
-
-    .metric-panel strong,
-    .responsibility-card strong,
-    .reason-card strong,
-    .timeline-card strong,
-    .candidate-card strong,
-    .practical-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.16rem;
-      letter-spacing: -0.04em;
-    }
-
-    .metric-panel p,
-    .responsibility-card p,
-    .reason-card p,
-    .timeline-card p,
-    .candidate-card p,
-    .practical-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .metric-panel .metric-kicker {
-      display: inline-flex;
-      align-items: center;
-      margin-bottom: 16px;
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .metric-panel-value {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-    }
-
-    .section-shell {
-      display: grid;
-      gap: 28px;
-    }
-
-    .responsibility-card ul,
-    .candidate-card ul,
-    .practical-card ul {
-      margin: 14px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .responsibility-card li + li,
-    .candidate-card li + li,
-    .practical-card li + li {
       margin-top: 6px;
     }
 
-    .council-layout {
-      display: grid;
-      gap: 18px;
-      margin-top: 32px;
-    }
-
-    .council-side {
-      padding: 24px;
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at top right, rgba(138, 168, 255, 0.16), transparent 28%),
-        rgba(255, 255, 255, 0.03);
-    }
-
-    .council-side strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .council-side p {
-      margin: 0;
+    .subtitle {
+      margin: 0 0 40px;
       color: var(--muted);
-      line-height: 1.72;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      max-width: 44ch;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .candidate-card {
-      overflow: hidden;
-      padding: 0;
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
     }
 
-    .candidate-media {
+    .input-wrap {
       position: relative;
-      min-height: 280px;
     }
 
-    .candidate-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      aspect-ratio: 4 / 4.6;
-    }
-
-    .candidate-body {
-      padding: 22px;
-    }
-
-    .candidate-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 16px 0 18px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted-strong);
-      font-size: 0.88rem;
-    }
-
-    .duo-panel {
-      padding: 28px;
-      border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at top right, rgba(119, 231, 194, 0.16), transparent 28%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
-    }
-
-    .duo-panel h3 {
-      margin: 0 0 12px;
-      font-size: clamp(1.6rem, 3vw, 2.35rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .duo-panel p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.78;
-      max-width: 72ch;
-    }
-
-    .duo-points {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .duo-point {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 14px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .duo-point:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .duo-point .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex: 0 0 auto;
-      margin-top: 8px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    }
-
-    .duo-point strong {
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .duo-point p {
-      max-width: none;
-      font-size: 0.95rem;
-    }
-
-    .media-grid {
-      margin-top: 32px;
-    }
-
-    .media-card {
-      overflow: hidden;
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03)),
-        rgba(255, 255, 255, 0.03);
-      box-shadow: var(--shadow);
-    }
-
-    .media-frame {
-      position: relative;
-      background: #03060b;
-    }
-
-    .media-frame img,
-    .media-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      aspect-ratio: 16 / 10;
-    }
-
-    .media-frame-button {
-      padding: 0;
-      width: 100%;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      cursor: zoom-in;
-    }
-
-    .gallery-card {
-      display: grid;
-    }
-
-    .gallery-shell {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 16 / 10;
-      background:
-        radial-gradient(circle at top right, rgba(138, 168, 255, 0.18), transparent 24%),
-        #03060b;
-    }
-
-    .gallery-track {
-      display: flex;
-      height: 100%;
-      transition: transform 320ms ease;
-      will-change: transform;
-    }
-
-    .gallery-slide {
-      position: relative;
-      min-width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-    }
-
-    .gallery-slide button {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: zoom-in;
-    }
-
-    .gallery-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.24));
-    }
-
-    .gallery-arrow {
+    .input-wrap svg {
       position: absolute;
+      left: 16px;
       top: 50%;
-      z-index: 2;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 50%;
-      background: rgba(4, 10, 18, 0.72);
-      color: var(--text);
-      display: grid;
-      place-items: center;
       transform: translateY(-50%);
-      cursor: pointer;
-      backdrop-filter: blur(14px);
-      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
-    }
-
-    .gallery-arrow:hover,
-    .gallery-arrow:focus-visible {
-      transform: translateY(-50%) scale(1.04);
-      background: rgba(9, 18, 32, 0.92);
-      border-color: rgba(255, 255, 255, 0.22);
-      outline: none;
-    }
-
-    .gallery-arrow.prev {
-      left: 14px;
-    }
-
-    .gallery-arrow.next {
-      right: 14px;
-    }
-
-    .gallery-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .gallery-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px 0;
-    }
-
-    .gallery-meta {
       color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .gallery-status {
-      color: var(--muted-strong);
-      font-size: 0.86rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .gallery-dots {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: flex-end;
-    }
-
-    .gallery-dot {
-      width: 10px;
-      height: 10px;
-      padding: 0;
-      border: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.18);
-      cursor: pointer;
-      transition: transform 180ms ease, background-color 180ms ease;
-    }
-
-    .gallery-dot.is-active,
-    .gallery-dot:hover,
-    .gallery-dot:focus-visible {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      transform: scale(1.18);
-      outline: none;
-    }
-
-    .media-copy {
-      padding: 20px 20px 22px;
-    }
-
-    .media-copy strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.14rem;
-      letter-spacing: -0.04em;
-    }
-
-    .media-copy p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.72;
-    }
-
-    .media-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: rgba(4, 10, 18, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text);
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-      backdrop-filter: blur(12px);
-    }
-
-    .media-badge-new {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 28px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #ffb870, #ff7b72);
-      color: #201208;
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 24px rgba(255, 123, 114, 0.28);
-    }
-
-    .media-note {
-      margin-top: 18px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 184, 112, 0.18);
-      background: rgba(255, 184, 112, 0.06);
-      color: var(--muted-strong);
-      font-size: 0.94rem;
-      line-height: 1.68;
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: rgba(3, 7, 12, 0.84);
-      backdrop-filter: blur(16px);
-      opacity: 0;
       pointer-events: none;
-      transition: opacity 220ms ease;
     }
 
-    .lightbox.is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .lightbox-dialog {
-      position: relative;
-      width: min(1100px, 100%);
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(7, 13, 22, 0.96);
-      box-shadow: var(--shadow);
-    }
-
-    .lightbox-image {
+    input[type="email"] {
       width: 100%;
-      max-height: 82vh;
-      object-fit: contain;
-      background: #02050a;
-    }
-
-    .lightbox-caption {
-      padding: 18px 20px 22px;
-      color: var(--muted-strong);
-      line-height: 1.65;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 50%;
-      background: rgba(4, 10, 18, 0.72);
+      padding: 14px 16px 14px 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--text);
-      cursor: pointer;
+      font-size: 0.98rem;
+      outline: none;
+      transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
     }
 
-    .reason-card {
-      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-    }
-
-    .reason-card:hover,
-    .reason-card:focus-within {
-      transform: translateY(-4px);
-      border-color: rgba(138, 168, 255, 0.26);
-      background:
-        linear-gradient(180deg, rgba(138, 168, 255, 0.08), rgba(255, 255, 255, 0.03)),
-        rgba(255, 255, 255, 0.04);
-    }
-
-    .reason-card em {
-      color: var(--muted-strong);
-      font-style: normal;
-    }
-
-    .timeline-card small,
-    .practical-card small {
-      display: block;
-      margin-bottom: 10px;
+    input[type="email"]::placeholder {
       color: var(--muted);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
 
-    .final-cta {
-      position: relative;
-      overflow: hidden;
-      padding: 34px 24px;
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at top right, rgba(119, 231, 194, 0.16), transparent 22%),
-        radial-gradient(circle at bottom left, rgba(138, 168, 255, 0.18), transparent 26%),
-        linear-gradient(145deg, rgba(14, 26, 44, 0.98), rgba(8, 15, 28, 0.92));
-      box-shadow: var(--shadow);
+    input[type="email"]:focus {
+      border-color: rgba(119, 231, 194, 0.5);
+      background: rgba(119, 231, 194, 0.05);
+      box-shadow: 0 0 0 3px rgba(119, 231, 194, 0.08);
     }
 
-    .final-cta h2 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      line-height: 0.94;
-      letter-spacing: -0.07em;
-      max-width: 12ch;
-    }
-
-    .final-cta p {
-      margin: 0;
-      max-width: 760px;
-      color: var(--muted-strong);
-      line-height: 1.8;
-    }
-
-    .final-cta .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .final-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .final-meta .tag {
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    footer {
-      padding: 28px 0 40px;
-    }
-
-    .footer-inner {
+    .checkboxes {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      color: var(--muted);
-      font-size: 0.92rem;
+      margin-top: 4px;
     }
 
-    .footer-inner a {
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .checkbox-item:has(input:checked) {
+      border-color: rgba(119, 231, 194, 0.3);
+      background: rgba(119, 231, 194, 0.05);
+    }
+
+    .checkbox-item:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      margin-top: 1px;
+      position: relative;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .checkbox-item input[type="checkbox"]:checked {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(119, 231, 194, 0.3), rgba(138, 168, 255, 0.2));
+    }
+
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='2,6 5,9 10,3' fill='none' stroke='%2377e7c2' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+    }
+
+    .checkbox-label {
+      font-size: 0.88rem;
+      color: var(--muted-strong);
+      line-height: 1.55;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(119, 231, 194, 0.3);
+      background: linear-gradient(135deg, rgba(119, 231, 194, 0.16), rgba(138, 168, 255, 0.12));
       color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 700ms ease, transform 700ms ease;
-      will-change: opacity, transform;
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(119, 231, 194, 0.6);
+      background: linear-gradient(135deg, rgba(119, 231, 194, 0.22), rgba(138, 168, 255, 0.18));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
     }
 
-    .reveal.visible {
-      opacity: 1;
+    .submit-btn:active {
       transform: translateY(0);
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    .footer-note {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
     }
 
-    @media (min-width: 760px) {
-      .container {
-        width: min(calc(100% - 48px), var(--max-width));
-      }
-
-      .hero-grid {
-        padding: 36px;
-      }
-
-      .meta-grid,
-      .metrics-grid,
-      .reasons-grid,
-      .timeline,
-      .practical-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .responsibility-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .candidate-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .footer-note a {
+      color: var(--muted-strong);
     }
 
-    @media (min-width: 980px) {
-      .nav {
-        display: inline-flex;
-      }
-
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(420px, 1.04fr);
-        gap: 26px;
-        align-items: stretch;
-        min-height: 720px;
-      }
-
-      .hero-visual {
-        grid-template-rows: minmax(0, 1fr) auto;
-      }
-
-      .hero-data-row {
-        grid-template-columns: 1.1fr 0.9fr;
-      }
-
-      .section-shell {
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-        align-items: start;
-      }
-
-      .council-layout {
-        grid-template-columns: minmax(0, 1.24fr) minmax(300px, 0.76fr);
-      }
-
-      .media-grid {
-        grid-template-columns: 1.16fr 0.84fr;
-      }
-
-      .media-grid .media-card:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .footer-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
+    .field-error {
+      margin: -8px 0 0;
+      padding: 0 16px;
+      font-size: 0.82rem;
+      color: #ff8080;
+      min-height: 1.2em;
     }
 
-    @media (max-width: 759px) {
-      .topbar-inner {
-        flex-wrap: wrap;
-        padding: 12px 0;
-      }
-
-      .nav-cta {
-        width: 100%;
-      }
-
-      .hero-copy-wrap h1,
-      .section-title,
-      .final-cta h2 {
-        max-width: none;
-      }
-
-      .hero-image-card img {
-        aspect-ratio: 4 / 4.4;
-        object-position: center top;
-      }
-
-      .hero-stat {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-mini-media {
+    @media (max-width: 860px) {
+      body {
         grid-template-columns: 1fr;
       }
+      .split-image {
+        min-height: 280px;
+        max-height: 340px;
+      }
+      .split-image-overlay {
+        padding: 28px;
+      }
+      .page {
+        padding: 40px 16px;
+      }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal,
-      .reveal.visible,
-      .button,
-      .nav a,
-      .nav-cta,
-      .reason-card {
-        transition: none !important;
-        transform: none !important;
-        opacity: 1 !important;
-        animation: none !important;
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 24px 32px;
+        border-radius: 28px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="progress-bar" aria-hidden="true"></div>
 
-  <div class="page">
-    <header class="topbar" aria-label="Navigation principale">
-      <div class="container topbar-inner">
-        <a class="brand" href="#home" aria-label="Retour en haut">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-copy">
-            <strong>FX &amp; Alexis</strong>
-            <span>FCPE Valiuz • Conseil de Surveillance 2026</span>
-          </span>
-        </a>
-
-        <nav class="nav" aria-label="Sections de la page">
-          <a href="#home">Accueil</a>
-          <a href="#why">Pourquoi</a>
-          <a href="#council">Le conseil</a>
-          <a href="#candidates">Les candidats</a>
-          <a href="#media">Media</a>
-          <a href="#vote">Vote</a>
-        </nav>
-
-        <a class="nav-cta" href="#vote">Voir les infos de vote</a>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero section" id="home" aria-labelledby="hero-title">
-        <div class="container">
-          <div class="hero-shell reveal">
-            <div class="hero-grid">
-              <div class="hero-copy-wrap">
-                <div class="eyebrow">
-                  <span class="eyebrow-dot" aria-hidden="true"></span>
-                  <span>Candidature interne au Conseil de Surveillance du FCPE</span>
-                </div>
-
-                <h1 id="hero-title">
-                  Deux collègues.
-                  Une mission simple.
-                  <span>Comprendre. Questionner. Représenter.</span>
-                </h1>
-
-                <p class="hero-lead">
-                  <strong>Une candidature commune et collective à l'image de notre projet</strong>
-                </p>
-
-                <div class="hero-actions">
-                  <a class="button button-primary" href="#why">Pourquoi ce vote compte</a>
-                  <a class="button" href="#media">Voir la campagne en version sérieuse + légèrement internet</a>
-                </div>
-
-                <div class="hero-meta">
-                  <div class="meta-grid">
-                    <article class="meta-card">
-                      <span class="meta-label">Leur cap</span>
-                      <strong>Représenter les salariés actionnaires avec clarté</strong>
-                      <p>Le Conseil ne doit pas être une boîte noire. Il doit aider à comprendre ce qui compte vraiment et à garder une lecture long terme.</p>
-                    </article>
-                    <article class="meta-card">
-                      <span class="meta-label">Leur style</span>
-                      <strong>Curieux, pragmatiques, probablement capables de poser les bonnes questions</strong>
-                      <p>Oui, le slogan a été testé en interne.</p>
-                    </article>
-                  </div>
-
-                  <div class="strip">
-                    <div class="strip-card">
-                      <strong>Pourquoi cette page existe</strong>
-                      <p>Parce qu'un vote interne mérite mieux qu'un PDF vite scrollé entre deux meetings. Ici, tout est pensé pour aller vite, être utile et donner envie d'aller jusqu'au bouton voter.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <aside class="hero-visual" aria-label="Repères de candidature">
-                <figure class="glass-card hero-image-card">
-                  <img
-                    src="duo-manifeste.png"
-                    alt="FX et Alexis observant au loin, dans une photo de campagne au second degré."
-                  >
-                  <figcaption class="hero-image-note">
-                    <strong>Le duo, version manifeste</strong>
-                    <span>Un visuel qui assume un peu de dramaturgie, tout en gardant le fond très concret : défendre les intérêts des salariés actionnaires.</span>
-                  </figcaption>
-                </figure>
-
-                <div class="hero-mini-media reveal" aria-label="Portraits vidéo institutionnels">
-                  <article class="hero-mini-video" data-hero-video-card>
-                    <div class="hero-mini-video-frame">
-                      <video preload="metadata" playsinline poster="alexis-president.png">
-                        <source src="alexis institutionnel.mp4" type="video/mp4">
-                        Votre navigateur ne prend pas en charge la lecture vidéo.
-                      </video>
-                      <button class="hero-mini-video-overlay" type="button" data-hero-video-trigger aria-label="Lire la vidéo institutionnelle d'Alexis">
-                        <span class="hero-mini-play" aria-hidden="true">
-                          <svg viewBox="0 0 24 24"><path d="M8 6l10 6-10 6z"></path></svg>
-                        </span>
-                        <span class="hero-mini-overlay-copy">
-                          <strong>Lire le portrait d'Alexis</strong>
-                          <span>8 secondes, format teaser</span>
-                        </span>
-                      </button>
-                    </div>
-                    <div class="hero-mini-video-body">
-                      <strong>Alexis, version institutionnelle</strong>
-                      <span>Un format court, clair et plus posé pour compléter le manifeste.</span>
-                    </div>
-                  </article>
-                  <article class="hero-mini-video" data-hero-video-card>
-                    <div class="hero-mini-video-frame">
-                      <video preload="metadata" playsinline poster="fx-president.png">
-                        <source src="fx institutionnel.mp4" type="video/mp4">
-                        Votre navigateur ne prend pas en charge la lecture vidéo.
-                      </video>
-                      <button class="hero-mini-video-overlay" type="button" data-hero-video-trigger aria-label="Lire la vidéo institutionnelle de FX">
-                        <span class="hero-mini-play" aria-hidden="true">
-                          <svg viewBox="0 0 24 24"><path d="M8 6l10 6-10 6z"></path></svg>
-                        </span>
-                        <span class="hero-mini-overlay-copy">
-                          <strong>Lire le portrait de FX</strong>
-                          <span>8 secondes, format teaser</span>
-                        </span>
-                      </button>
-                    </div>
-                    <div class="hero-mini-video-body">
-                      <strong>FX, version institutionnelle</strong>
-                      <span>Le pendant plus personnel du duo, dans un cadre plus direct.</span>
-                    </div>
-                  </article>
-                </div>
-
-                <div class="hero-data-row">
-                  <div class="hero-stat">
-                    <span>Mandat visé</span>
-                    <strong>Conseil de Surveillance du FCPE</strong>
-                  </div>
-                  <div class="hero-stat">
-                    <span>Point d'ancrage</span>
-                    <strong>Valiuz, terrain réel, questions réelles</strong>
-                  </div>
-                  <div class="hero-stat">
-                    <span>Approche</span>
-                    <strong>Transparence, pédagogie, long terme</strong>
-                  </div>
-                  <div class="hero-stat">
-                    <span>Signal culturel</span>
-                    <strong>Sérieux sur le fond, un peu de recul sur la forme</strong>
-                  </div>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="why" aria-labelledby="why-title">
-        <div class="container section-inner">
-          <div class="section-shell">
-            <div class="reveal">
-              <div class="section-label">Pourquoi ce vote</div>
-              <h2 class="section-title" id="why-title">Parce que l'épargne salariale mérite plus qu'un regard distrait.</h2>
-              <p class="section-copy">
-                Le FCPE n'est pas un sujet abstrait. C'est la façon dont une partie de l'épargne des salariés est investie dans l'entreprise.
-                Le Conseil de Surveillance existe pour représenter ces intérêts, suivre les décisions structurantes et garder un niveau d'exigence sur la compréhension des enjeux.
-                <br><br>
-                En clair : il faut des représentants capables de <strong>lire les sujets, poser les questions utiles, restituer avec pédagogie</strong> et rester solides quand les arbitrages deviennent plus complexes.
-              </p>
-            </div>
-
-            <div class="metrics-grid reveal" aria-label="Repères d'intérêt">
-              <article class="metric-panel">
-                <span class="metric-kicker">Pourquoi il faut s'y intéresser</span>
-                <p class="metric-panel-value">Comprendre la valeur</p>
-                <p>Le rôle ne consiste pas à commenter de loin, mais à suivre les évolutions de l'entreprise avec assez de recul pour distinguer le signal du bruit.</p>
-              </article>
-              <article class="metric-panel">
-                <span class="metric-kicker">Ce qui est attendu</span>
-                <p class="metric-panel-value">Expliquer simplement</p>
-                <p>Un bon représentant doit pouvoir rendre le sujet lisible, même pour celles et ceux qui ne vivent pas dans des tableaux ou des présentations finance.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="council" aria-labelledby="council-title">
-        <div class="container section-inner">
-          <div class="reveal">
-            <div class="section-label">Le Conseil en clair</div>
-            <h2 class="section-title" id="council-title">Ce que le Conseil de Surveillance fait vraiment.</h2>
-            <p class="section-copy">
-              Le sujet peut sembler lointain. Il ne l'est pas. Le Conseil sert à représenter les salariés actionnaires, suivre les grandes évolutions et garder de la lisibilité sur ce qui engage durablement la valeur et la confiance.
-            </p>
-          </div>
-
-          <div class="council-layout">
-            <div class="responsibility-grid reveal" aria-label="Rôles du conseil">
-              <article class="responsibility-card">
-                <strong>Suivre</strong>
-                <p>Prendre connaissance des sujets importants, comprendre les évolutions et vérifier que les décisions sont suffisamment éclairées.</p>
-                <ul>
-                  <li>Regarder la trajectoire et pas seulement l'instant.</li>
-                  <li>Identifier ce qui mérite vigilance ou clarification.</li>
-                </ul>
-              </article>
-              <article class="responsibility-card">
-                <strong>Questionner</strong>
-                <p>Être capable d'aller au fond des points importants, sans transformer le rôle en tribune ni en chambre d'enregistrement.</p>
-                <ul>
-                  <li>Poser les bonnes questions au bon moment.</li>
-                  <li>Demander des réponses nettes, argumentées, compréhensibles.</li>
-                </ul>
-              </article>
-              <article class="responsibility-card">
-                <strong>Restituer</strong>
-                <p>Rendre les enjeux lisibles pour les salariés actionnaires avec un langage clair, sobre et utile.</p>
-                <ul>
-                  <li>Éviter le jargon qui éloigne.</li>
-                  <li>Faire circuler une compréhension plus juste.</li>
-                </ul>
-              </article>
-            </div>
-
-            <aside class="council-side reveal">
-              <strong>Leur lecture du mandat</strong>
-              <p>
-                FX et Alexis ne présentent pas ce rôle comme un symbole. Ils le présentent comme un mandat d'attention, de méthode et de responsabilité.
-                Leur posture n'est pas de faire du bruit. Leur posture est d'être utiles.
-              </p>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="candidates" aria-labelledby="candidates-title">
-        <div class="container section-inner">
-          <div class="reveal">
-            <div class="section-label">Les candidats</div>
-            <h2 class="section-title" id="candidates-title">Deux profils crédibles, une même façon de travailler.</h2>
-            <p class="section-copy">
-              Leur force vient moins d'un grand discours que d'un état d'esprit commun :
-              <strong>comprendre avant d'affirmer, creuser avant de conclure, rester accessibles tout du long</strong>.
-            </p>
-          </div>
-
-          <div class="candidate-grid">
-            <article class="candidate-card reveal">
-              <div class="candidate-media">
-                <img
-                  src="Gemini_Generated_Image_j54xqij54xqij54x.png"
-                  alt="Portrait de FX et Alexis ensemble dans un environnement de bureau sobre."
-                >
-              </div>
-              <div class="candidate-body">
-                <strong>FX</strong>
-                <p>
-                  Leader Opérationnel de Naomi app B2C, ancien de la tech et du produit, FX apporte un profil de builder complet :
-                  quelqu'un qui sait passer d'une intuition à une exécution concrète, sans perdre le sens du détail.
-                  Il fait aussi partie de ceux qui ont lancé Le Wagon à Lille, ce qui raconte bien le personnage :
-                  de l'énergie, de la transmission, et un vrai goût pour les sujets qu'on construit pour de bon.
-                </p>
-                <div class="candidate-meta" aria-label="Repères de FX">
-                  <span class="tag">Leader Opérationnel Naomi app B2C</span>
-                  <span class="tag">Ancien tech &amp; produit</span>
-                  <span class="tag">Lancement du Wagon Lille</span>
-                </div>
-                <ul>
-                  <li>Un profil builder qui comprend autant le produit que l'atterrissage opérationnel.</li>
-                  <li>Une culture tech très concrète, avec le réflexe de creuser plutôt que survoler.</li>
-                  <li>Un tempérament qui donne envie d'avancer : sérieux quand il faut, stimulant presque tout le temps.</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="candidate-card reveal">
-              <div class="candidate-media">
-                <img
-                  src="Gemini_Generated_Image_1fy6jq1fy6jq1fy6.png"
-                  alt="Affiche de campagne illustrant FX et Alexis ensemble."
-                >
-              </div>
-              <div class="candidate-body">
-                <strong>Alexis</strong>
-                <p>
-                  Alexis est arrivé chez Valiuz à une époque où l'équipe comptait encore une vingtaine de personnes.
-                  Il a construit et fait grandir la fonction analytics dans un contexte de forte ambition produit et data, avec un vrai profil de builder analytique :
-                  comprendre comment les systèmes créent de la valeur, puis les rendre plus utiles, plus lisibles et plus efficaces.
-                </p>
-                <div class="candidate-meta" aria-label="Repères d'Alexis">
-                  <span class="tag">Depuis 2020 chez Valiuz</span>
-                  <span class="tag">Builder analytique</span>
-                  <span class="tag">Produit, data, innovation</span>
-                </div>
-                <ul>
-                  <li>Une vraie appétence pour les sujets complexes : IA, systèmes, crypto, innovation, avec l'envie de creuser plutôt que survoler.</li>
-                  <li>Un mélange de rigueur, de détermination et de pragmatisme pour faire avancer les projets de manière concrète.</li>
-                  <li>Un engagement au-delà du job : investissements entrepreneuriaux, animation d'une communauté tech de plus de 400 personnes, implication dans la vie locale.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-
-          <div class="duo-panel reveal">
-            <h3>Ce qu'ils apportent ensemble</h3>
-            <p>
-              Un duo complémentaire, crédible et lisible pour une entreprise qui a une culture produit, data, média et exécution.
-              Pas une campagne hors-sol. Pas une page qui sonne corporate-vide. Juste deux collègues qui veulent faire ce rôle sérieusement et de manière intelligible.
-            </p>
-            <div class="duo-points">
-              <div class="duo-point">
-                <span class="dot" aria-hidden="true"></span>
-                <div>
-                  <strong>Crédibilité</strong>
-                  <p>Ils parlent d'un mandat concret, pas d'une promesse abstraite.</p>
-                </div>
-              </div>
-              <div class="duo-point">
-                <span class="dot" aria-hidden="true"></span>
-                <div>
-                  <strong>Lisibilité</strong>
-                  <p>Leur cap tient dans des mots simples : comprendre, questionner, restituer.</p>
-                </div>
-              </div>
-              <div class="duo-point">
-                <span class="dot" aria-hidden="true"></span>
-                <div>
-                  <strong>Culture Valiuz</strong>
-                  <p>Le ton est moderne, un peu internet-aware, mais toujours aligné avec un environnement de travail exigeant.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="media" aria-labelledby="media-title">
-        <div class="container section-inner">
-          <div class="reveal">
-            <div class="section-label">Media de campagne</div>
-            <h2 class="section-title" id="media-title">Une campagne qui se regarde aussi bien qu'elle se lit.</h2>
-            <p class="section-copy">
-              Les contenus ne sont pas là pour faire gadget. Ils servent à montrer le ton du duo :
-              sérieux sur le fond, assumé dans la forme, et suffisamment vivant pour donner envie de partager la page à un collègue plutôt que juste lui transférer un document.
-            </p>
-          </div>
-
-          <div class="media-grid">
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Sondage FCPE</span>
-                <span class="media-badge-new">New</span>
-                <video controls preload="metadata" playsinline>
-                  <source src="sondage_FCPE.mp4" type="video/mp4">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Le sondage FCPE</strong>
-                <p>Un nouveau format ajouté à la campagne pour donner plus de relief au dispositif et montrer que la présence media continue de s'enrichir.</p>
-              </div>
-            </article>
-
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Votez Yann</span>
-                <span class="media-badge-new">New</span>
-                <video controls preload="metadata" playsinline>
-                  <source src="votezyann.mp4" type="video/mp4">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Votez Yann</strong>
-                <p>Un autre nouvel ajout video pour étoffer la campagne avec une capsule plus directe, identifiable immédiatement comme contenu frais dans la sélection media.</p>
-              </div>
-            </article>
-
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Vidéo manifeste</span>
-                <video controls preload="metadata" poster="spot_principal.png">
-                  <source src="fcpe_vote_alexis_fx.mp4" type="video/mp4">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Le spot principal</strong>
-                <p>La version campagne premium. À utiliser comme pièce centrale de la narration : crédible, posée, et assez produite pour donner une vraie présence au duo.</p>
-              </div>
-            </article>
-
-            <article class="media-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Version brainrot contrôlée</span>
-                <video controls preload="metadata" poster="brainrot.png">
-                  <source src="brainrot-minecraft-1773361606151.webm" type="video/webm">
-                  Votre navigateur ne prend pas en charge la lecture vidéo.
-                </video>
-              </div>
-              <div class="media-copy">
-                <strong>Le décryptage version internet-native</strong>
-                <p>Une respiration volontairement plus absurde, pour les collègues qui parlent aussi en références TikTok, YTP et lore inutilement précis. Le cadre reste simple : une blague qui sert la mémorisation, pas l'inverse.</p>
-              </div>
-            </article>
-
-            <article class="media-card gallery-card reveal">
-              <div class="media-frame">
-                <span class="media-badge">Visuels de campagne</span>
-                <div class="gallery-shell" data-gallery>
-                  <div class="gallery-track">
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
-                        data-lightbox-src="fx-tennis.png"
-                        data-lightbox-alt="FX dans une affiche de campagne au thème tennis."
-                        data-lightbox-caption="FX version tennis: une affiche décalée, sportive et parfaitement dans l'esprit campagne parallèle."
-                        aria-label="Ouvrir le visuel de campagne 1 en grand"
-                      >
-                        <img
-                          src="fx-tennis.png"
-                          alt="FX dans une affiche de campagne au thème tennis."
-                        >
-                      </button>
-                    </div>
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
-                        data-lightbox-src="alex-fx-terasse.png"
-                        data-lightbox-alt="Alexis et FX dans une affiche de campagne au thème terrasse."
-                        data-lightbox-caption="Alexis & FX version terrasse: plus duo, plus vie d'équipe, et toujours dans le bon dosage entre second degré et proximité."
-                        aria-label="Ouvrir le visuel de campagne 2 en grand"
-                      >
-                        <img
-                          src="alex-fx-terasse.png"
-                          alt="Alexis et FX dans une affiche de campagne au thème terrasse."
-                        >
-                      </button>
-                    </div>
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
-                        data-lightbox-src="alexis-squash.png"
-                        data-lightbox-alt="Alexis dans une affiche de campagne au thème squash."
-                        data-lightbox-caption="Alexis version squash: plus sport, plus campagne parallèle, et toujours assez propre pour rester partageable en interne."
-                        aria-label="Ouvrir le visuel de campagne 3 en grand"
-                      >
-                        <img
-                          src="alexis-squash.png"
-                          alt="Alexis dans une affiche de campagne au thème squash."
-                        >
-                      </button>
-                    </div>
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
-                        data-lightbox-src="fx-wizard.png"
-                        data-lightbox-alt="FX dans une affiche de campagne au thème wizard."
-                        data-lightbox-caption="FX version wizard: plus fantasy, plus lore, et parfaitement calibré pour enrichir l'univers de campagne."
-                        aria-label="Ouvrir le visuel de campagne 4 en grand"
-                      >
-                        <img
-                          src="fx-wizard.png"
-                          alt="FX dans une affiche de campagne au thème wizard."
-                        >
-                      </button>
-                    </div>
-                    <div class="gallery-slide">
-                      <button
-                        type="button"
-                        class="media-frame-button"
-                        data-lightbox-src="fx-dream.png"
-                        data-lightbox-alt="FX dans une affiche de campagne au thème dream."
-                        data-lightbox-caption="FX version dream: un visuel plus onirique, absurde juste ce qu'il faut, et très fort pour clôturer le carrousel."
-                        aria-label="Ouvrir le visuel de campagne 5 en grand"
-                      >
-                        <img
-                          src="fx-dream.png"
-                          alt="FX dans une affiche de campagne au thème dream."
-                        >
-                      </button>
-                    </div>
-                  </div>
-                  <button class="gallery-arrow prev" type="button" aria-label="Image précédente">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
-                  </button>
-                  <button class="gallery-arrow next" type="button" aria-label="Image suivante">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
-                  </button>
-                </div>
-              </div>
-              <div class="media-copy">
-                <strong>Les affiches, en version second degré maîtrisé</strong>
-                <p>Ces visuels donnent du relief et un peu de culture internet à la campagne, tout en gardant un ton assez propre pour un contexte interne. La règle est simple : sourire oui, cringe non.</p>
-                <div class="gallery-footer" aria-label="Navigation de la galerie">
-                  <span class="gallery-meta">Cliquez pour ouvrir en grand</span>
-                  <span class="gallery-status" aria-live="polite">01 / 05</span>
-                  <div class="gallery-dots">
-                    <button class="gallery-dot is-active" type="button" aria-label="Voir l'image 1"></button>
-                    <button class="gallery-dot" type="button" aria-label="Voir l'image 2"></button>
-                    <button class="gallery-dot" type="button" aria-label="Voir l'image 3"></button>
-                    <button class="gallery-dot" type="button" aria-label="Voir l'image 4"></button>
-                    <button class="gallery-dot" type="button" aria-label="Voir l'image 5"></button>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-
-        </div>
-      </section>
-
-      <section class="section" id="vote" aria-labelledby="vote-title">
-        <div class="container section-inner">
-          <div class="section-shell">
-            <div class="reveal">
-              <div class="section-label">Infos pratiques</div>
-              <h2 class="section-title" id="vote-title">Le plus important à la fin : voter.</h2>
-              <p class="section-copy">
-                Après le lancement du dispositif d'actionnariat en 2025, Valiuz met en place le premier Conseil de Surveillance du FCPE.
-                Cette élection permet aux porteurs de parts de désigner leurs représentants pour les 5 prochaines années.
-              </p>
-            </div>
-
-            <div class="timeline reveal" aria-label="Timeline de vote">
-              <article class="timeline-card">
-                <small>Étape 1</small>
-                <strong>Dépôt des candidatures</strong>
-                <p>Les collaborateurs éligibles peuvent transmettre leur candidature par mail à <a href="mailto:rh@valiuz.com">rh@valiuz.com</a> jusqu'au lundi 16 mars 2026 à 12h00.</p>
-              </article>
-              <article class="timeline-card">
-                <small>Étape 2</small>
-                <strong>Ouverture du vote</strong>
-                <p>Le scrutin se déroule exclusivement par voie électronique du 24 mars 2026 à 8h00 au 26 mars 2026 à 16h00.</p>
-              </article>
-              <article class="timeline-card">
-                <small>Étape 3</small>
-                <strong>Accès au portail sécurisé</strong>
-                <p>Le portail de vote sera accessible 24h/24 sur PC, mobile et tablette. Le partenaire KERCIA transmettra à chaque électeur ses codes d'accès.</p>
-              </article>
-              <article class="timeline-card">
-                <small>Étape 4</small>
-                <strong>Suite du processus</strong>
-                <p>Les représentants élus suivront l'évolution de la valorisation de l'action Valiuz, participeront aux décisions de gestion du FCPE et porteront le vote du fonds en Assemblée Générale.</p>
-              </article>
-            </div>
-          </div>
-
-          <div class="practical-grid" style="margin-top: 18px;">
-            <article class="practical-card reveal">
-              <small>Qui peut voter</small>
-              <strong>Électeurs et modalités du scrutin</strong>
-              <ul>
-                <li>Seuls les collaborateurs sous contrat de travail et porteurs de parts peuvent voter.</li>
-                <li>La liste électorale est consultable sur l'intranet.</li>
-                <li>Chaque électeur dispose d'un nombre de voix égal au nombre de parts qu'il détient.</li>
-                <li>Il est possible de voter pour jusqu'à 4 candidats, chacun recevant alors l'intégralité du nombre de voix détenues par l'électeur.</li>
-              </ul>
-            </article>
-            <article class="practical-card reveal">
-              <small>Pourquoi c'est important</small>
-              <strong>Ce que vous choisissez concrètement</strong>
-              <p>En tant que porteurs de parts, vous élisez 2 collaborateurs titulaires et 2 collaborateurs suppléants pour siéger pendant 5 ans. Ces représentants se réuniront une fois par an pour suivre la valorisation de l'action Valiuz, participer aux décisions de gestion du FCPE et exprimer le vote du fonds lors des résolutions proposées en Assemblée Générale.</p>
-            </article>
-          </div>
-
-          <div class="final-cta reveal" style="margin-top: 30px;">
-            <h2>Votez pour un duo qui prend ce mandat au sérieux.</h2>
-            <p>
-              FX et Alexis proposent quelque chose de simple et précieux :
-              une représentation plus lisible, plus attentive et plus utile pour les salariés actionnaires.
-              Si cette approche vous parle, soutenez leur candidature pendant la période de vote du 24 au 26 mars 2026.
-            </p>
-            <div class="cta-row">
-              <a class="button button-primary" href="#">Portail de vote KERCIA</a>
-              <a class="button" href="#home">Revenir au début</a>
-            </div>
-            <div class="final-meta" aria-label="Promesse finale">
-              <span class="tag">Curieux</span>
-              <span class="tag">Pragmatiques</span>
-              <span class="tag">Long terme</span>
-              <span class="tag">Transparents</span>
-              <span class="tag">Un peu internet, jamais hors sujet</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-inner">
-        <span>FX &amp; Alexis • Candidature au Conseil de Surveillance du FCPE Valiuz</span>
-        <a href="#home">Retour en haut</a>
-      </div>
-    </footer>
-  </div>
-
-  <div class="lightbox" id="media-lightbox" aria-hidden="true">
-    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
-      <button class="lightbox-close" type="button" aria-label="Fermer la visionneuse">×</button>
-      <img class="lightbox-image" alt="">
-      <div class="lightbox-caption" id="lightbox-caption"></div>
+  <!-- Panneau gauche : image à remplacer par la photo "personnes/horizon/jeux/machines à sous" -->
+  <div class="split-image">
+    <img src="images/walk-in-ch.png" alt="Le collectif">
+    <div class="split-image-overlay">
+      <blockquote>
+        Pensez à votre retraite <em>investissez</em> sur le projet dans lequel vous contribuez quotidiennement.
+      </blockquote>
+      <cite>Pourlecollectif.ch — Co-actionnaires Valiuz</cite>
     </div>
   </div>
 
+  <!-- Panneau droit : formulaire -->
+  <div class="page">
+    <div class="card">
+      <div class="card-inner">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Mouvement co-actionnaires
+        </div>
+
+        <h1>
+          Rejoignez le mouvement
+          <span class="site-name">Pourlecollectif.ch</span>
+        </h1>
+
+        <p class="subtitle">
+          Ensemble, mobilisons les co-actionnaires autour d'un projet commun ambitieux et engagé.
+        </p>
+
+        <form class="form" onsubmit="handleSubmit(event)">
+
+          <div class="input-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+            <input
+              type="email"
+              id="email-input"
+              name="email"
+              placeholder="prenom.nom@valiuz.com ou prenom.nom@naomi.fr"
+              required
+              autocomplete="email"
+            >
+          </div>
+          <p id="email-error" class="field-error" aria-live="polite"></p>
+
+          <div class="checkboxes">
+            <label class="checkbox-item">
+              <input type="checkbox" name="consent1" required>
+              <span class="checkbox-label">
+                J'accepte d'adhérer à un mouvement engagé pour favoriser le succès de notre projet commun de co-actionnaire.
+              </span>
+            </label>
+
+            <label class="checkbox-item">
+              <input type="checkbox" name="consent2" required>
+              <span class="checkbox-label">
+                Je m'engage à recevoir avec le sourire des cadeaux, de lire un contenu décalé mais authentique et sincère, de participer activement à faire évoluer la valeur part dans mon quotidien.
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Rejoindre le mouvement
+          </button>
+
+        </form>
+
+        <p class="footer-note">
+          En rejoignant, vous acceptez notre <a href="politique.html" target="_blank" style="color:var(--muted-strong);text-decoration:underline;">politique de confidentialité</a>. Pas de spam, promis. On va pas t'envoyer d'email car ton mail pour nous c'est une série de chiffres et de lettres illisibles.
+        </p>
+
+      </div>
+    </div>
+  </div><!-- fin .page -->
+
   <script>
-    (function () {
-      var root = document.documentElement;
-      var progress = document.querySelector(".progress-bar");
-      var revealItems = document.querySelectorAll(".reveal");
-      var sections = document.querySelectorAll("main section[id]");
-      var navLinks = document.querySelectorAll(".nav a");
-      var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Redirection immédiate si déjà soumis sur cet appareil
+    try {
+      if (localStorage.getItem('plc_done') === 'true') {
+        window.location.replace('bienvenue.html');
+      }
+    } catch(_) {}
 
-      function updateProgress() {
-        var scrollTop = window.scrollY || window.pageYOffset;
-        var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        var ratio = maxScroll > 0 ? scrollTop / maxScroll : 0;
-        if (progress) {
-          progress.style.setProperty("--progress", ratio.toFixed(4));
-        }
+    const ALLOWED_DOMAINS = ['valiuz.com', 'naomi.fr'];
+
+    function getEmailDomain(email) {
+      return email.split('@')[1]?.toLowerCase() || '';
+    }
+
+    function validateEmail(email) {
+      const domain = getEmailDomain(email);
+      return ALLOWED_DOMAINS.includes(domain);
+    }
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw2OrHvm-K_6dZseAXXIzkRveOE6Z_X4nr6kbFgHGpjuVaiMDWjO0SZtN1MqN5ITaX0w/exec';
+
+    async function hashEmail(email) {
+      const str = email.toLowerCase().trim();
+      if (crypto.subtle) {
+        const buf = await crypto.subtle.digest(
+          'SHA-256',
+          new TextEncoder().encode(str)
+        );
+        return Array.from(new Uint8Array(buf))
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('');
+      }
+      // Fallback pour contextes non-sécurisés (file://)
+      let hash = 5381;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+      }
+      return (hash >>> 0).toString(16);
+    }
+
+    document.getElementById('email-input').addEventListener('input', function () {
+      document.getElementById('email-error').textContent = '';
+    });
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('email-input');
+      const err = document.getElementById('email-error');
+      const btn = e.target.querySelector('.submit-btn');
+      const email = emailInput.value.trim();
+
+      if (!validateEmail(email)) {
+        err.textContent = "Bon, on ne va pas se mentir, c'est pas Fort Knox — mais ça fait le job sans devoir marcher sur la ligne de l'annuaire des adresses mails des co-actionnaires.";
+        emailInput.focus();
+        return;
       }
 
-      function setActiveLink(id) {
-        navLinks.forEach(function (link) {
-          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+
+      try {
+        const hash = await hashEmail(email);
+        await fetch(SCRIPT_URL + '?hash=' + hash, {
+          method: 'GET',
+          mode: 'no-cors',
         });
+      } catch (_) {
+        // On redirige quand même si le réseau échoue
       }
 
-      updateProgress();
-      window.addEventListener("scroll", updateProgress, { passive: true });
-      window.addEventListener("resize", updateProgress);
-
-      if (!prefersReducedMotion && "IntersectionObserver" in window) {
-        var revealObserver = new IntersectionObserver(function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {
-          threshold: 0.14
-        });
-
-        revealItems.forEach(function (item) {
-          revealObserver.observe(item);
-        });
-      } else {
-        revealItems.forEach(function (item) {
-          item.classList.add("visible");
-        });
-      }
-
-      if ("IntersectionObserver" in window) {
-        var sectionObserver = new IntersectionObserver(function (entries) {
-          var visibleEntry = entries
-            .filter(function (entry) { return entry.isIntersecting; })
-            .sort(function (a, b) { return b.intersectionRatio - a.intersectionRatio; })[0];
-
-          if (visibleEntry) {
-            setActiveLink(visibleEntry.target.id);
-          }
-        }, {
-          rootMargin: "-35% 0px -45% 0px",
-          threshold: [0.2, 0.45, 0.7]
-        });
-
-        sections.forEach(function (section) {
-          sectionObserver.observe(section);
-        });
-      } else if (sections[0]) {
-        setActiveLink(sections[0].id);
-      }
-
-      var gallery = document.querySelector("[data-gallery]");
-      var lightbox = document.getElementById("media-lightbox");
-
-      if (gallery) {
-        var track = gallery.querySelector(".gallery-track");
-        var slides = Array.prototype.slice.call(gallery.querySelectorAll(".gallery-slide"));
-        var prevButton = gallery.querySelector(".gallery-arrow.prev");
-        var nextButton = gallery.querySelector(".gallery-arrow.next");
-        var dots = Array.prototype.slice.call(document.querySelectorAll(".gallery-dot"));
-        var galleryStatus = document.querySelector(".gallery-status");
-        var activeIndex = 0;
-        var autoplayTimer = null;
-        var touchStartX = 0;
-        var touchDeltaX = 0;
-
-        function renderGallery(index) {
-          activeIndex = (index + slides.length) % slides.length;
-          track.style.transform = "translateX(" + (-activeIndex * 100) + "%)";
-          dots.forEach(function (dot, dotIndex) {
-            dot.classList.toggle("is-active", dotIndex === activeIndex);
-          });
-          if (galleryStatus) {
-            galleryStatus.textContent = String(activeIndex + 1).padStart(2, "0") + " / " + String(slides.length).padStart(2, "0");
-          }
-        }
-
-        function stopAutoplay() {
-          if (autoplayTimer) {
-            window.clearInterval(autoplayTimer);
-            autoplayTimer = null;
-          }
-        }
-
-        function startAutoplay() {
-          if (prefersReducedMotion) {
-            return;
-          }
-          stopAutoplay();
-          autoplayTimer = window.setInterval(function () {
-            renderGallery(activeIndex + 1);
-          }, 4200);
-        }
-
-        if (prevButton) {
-          prevButton.addEventListener("click", function () {
-            renderGallery(activeIndex - 1);
-            startAutoplay();
-          });
-        }
-
-        if (nextButton) {
-          nextButton.addEventListener("click", function () {
-            renderGallery(activeIndex + 1);
-            startAutoplay();
-          });
-        }
-
-        dots.forEach(function (dot, dotIndex) {
-          dot.addEventListener("click", function () {
-            renderGallery(dotIndex);
-            startAutoplay();
-          });
-        });
-
-        gallery.addEventListener("mouseenter", stopAutoplay);
-        gallery.addEventListener("mouseleave", startAutoplay);
-        gallery.addEventListener("focusin", stopAutoplay);
-        gallery.addEventListener("focusout", startAutoplay);
-        gallery.addEventListener("touchstart", function (event) {
-          touchStartX = event.changedTouches[0].clientX;
-          touchDeltaX = 0;
-          stopAutoplay();
-        }, { passive: true });
-        gallery.addEventListener("touchmove", function (event) {
-          touchDeltaX = event.changedTouches[0].clientX - touchStartX;
-        }, { passive: true });
-        gallery.addEventListener("touchend", function () {
-          if (Math.abs(touchDeltaX) > 36) {
-            renderGallery(activeIndex + (touchDeltaX < 0 ? 1 : -1));
-          }
-          startAutoplay();
-        }, { passive: true });
-
-        renderGallery(0);
-        startAutoplay();
-      }
-
-      if (lightbox) {
-        var lightboxImage = lightbox.querySelector(".lightbox-image");
-        var lightboxCaption = lightbox.querySelector(".lightbox-caption");
-        var lightboxClose = lightbox.querySelector(".lightbox-close");
-        var lightboxTriggers = document.querySelectorAll("[data-lightbox-src]");
-
-        function openLightbox(trigger) {
-          lightboxImage.src = trigger.getAttribute("data-lightbox-src");
-          lightboxImage.alt = trigger.getAttribute("data-lightbox-alt") || "";
-          lightboxCaption.textContent = trigger.getAttribute("data-lightbox-caption") || "";
-          lightbox.classList.add("is-open");
-          lightbox.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-        }
-
-        function closeLightbox() {
-          lightbox.classList.remove("is-open");
-          lightbox.setAttribute("aria-hidden", "true");
-          document.body.style.overflow = "";
-          lightboxImage.removeAttribute("src");
-        }
-
-        lightboxTriggers.forEach(function (trigger) {
-          trigger.addEventListener("click", function () {
-            openLightbox(trigger);
-          });
-        });
-
-        if (lightboxClose) {
-          lightboxClose.addEventListener("click", closeLightbox);
-        }
-
-        lightbox.addEventListener("click", function (event) {
-          if (event.target === lightbox) {
-            closeLightbox();
-          }
-        });
-
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
-            closeLightbox();
-          }
-        });
-      }
-
-      var heroVideoCards = document.querySelectorAll("[data-hero-video-card]");
-
-      heroVideoCards.forEach(function (card) {
-        var video = card.querySelector("video");
-        var trigger = card.querySelector("[data-hero-video-trigger]");
-
-        function setPlayingState(isPlaying) {
-          card.classList.toggle("is-playing", isPlaying);
-          if (isPlaying) {
-            video.setAttribute("controls", "");
-          } else {
-            video.removeAttribute("controls");
-          }
-        }
-
-        if (trigger && video) {
-          trigger.addEventListener("click", function () {
-            heroVideoCards.forEach(function (otherCard) {
-              if (otherCard !== card) {
-                var otherVideo = otherCard.querySelector("video");
-                if (otherVideo) {
-                  otherVideo.pause();
-                  otherVideo.currentTime = 0;
-                  otherVideo.removeAttribute("controls");
-                }
-                otherCard.classList.remove("is-playing");
-              }
-            });
-
-            setPlayingState(true);
-            video.play();
-          });
-
-          video.addEventListener("play", function () {
-            setPlayingState(true);
-          });
-
-          video.addEventListener("ended", function () {
-            video.currentTime = 0;
-            setPlayingState(false);
-          });
-        }
-      });
-    })();
+      try { localStorage.setItem('plc_done', 'true'); } catch(_) {}
+      window.location.href = 'bienvenue.html';
+    }
   </script>
 </body>
 </html>
