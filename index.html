@@ -143,43 +143,9 @@
     }
 
     .card {
-      position: relative;
-      overflow: hidden;
       width: min(100%, 520px);
-      border-radius: 36px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        linear-gradient(140deg, rgba(12, 22, 38, 0.96), rgba(7, 14, 26, 0.88)),
-        rgba(11, 20, 35, 0.92);
-      box-shadow: var(--shadow);
       padding: 52px 44px 48px;
       text-align: center;
-    }
-
-    .card::before,
-    .card::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(28px);
-      pointer-events: none;
-      opacity: 0.7;
-    }
-
-    .card::before {
-      width: 360px;
-      height: 360px;
-      top: -160px;
-      right: -80px;
-      background: radial-gradient(circle, rgba(138, 168, 255, 0.28), transparent 70%);
-    }
-
-    .card::after {
-      width: 300px;
-      height: 300px;
-      bottom: -140px;
-      left: -60px;
-      background: radial-gradient(circle, rgba(119, 231, 194, 0.16), transparent 70%);
     }
 
     .card-inner {
@@ -263,8 +229,8 @@
       padding: 14px 16px 14px 44px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
+      background: #ffffff;
+      color: #111;
       font-size: 0.98rem;
       outline: none;
       transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
@@ -459,7 +425,7 @@
               type="email"
               id="email-input"
               name="email"
-              placeholder="prenom.nom@valiuz.com ou prenom.nom@naomi.fr"
+              placeholder="utilise ton adresse valiuz ou naomi"
               required
               autocomplete="email"
             >

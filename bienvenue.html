@@ -389,6 +389,29 @@
 
     .btn-game:hover { text-decoration: none; }
 
+    /* ── Pluie de billets ── */
+    #money-rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .bill {
+      position: absolute;
+      top: -80px;
+      font-size: 2.4rem;
+      animation: fall linear forwards;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg) scale(0.8); opacity: 0; }
+    }
+
     /* ── Footer ── */
     .footer {
       border-top: 1px solid rgba(255,255,255,0.06);
@@ -428,7 +451,7 @@
         <span class="eyebrow-dot"></span>
         Bienvenue dans le mouvement
       </div>
-      <h1>Vous faites partie<br>du <em>collectif.</em></h1>
+      <h1>Vous faites partie<br>du <em>mouvement.</em></h1>
       <p class="hero-lead">
         Ici, pas de grande messe ni de rapport annuel de 80 pages.
         Juste des contenus utiles, un peu décalés, pour rester au courant et s'impliquer quand ça compte.
@@ -436,103 +459,65 @@
     </div>
   </section>
 
-  <!-- TV image -->
-  <div class="container">
-    <div class="tv-card">
-      <!-- REMPLACER src par l'image "4 personnes dans un écran de TV qui lèvent la main" -->
-      <img
-        src="images/duo-manifeste.png"
-        alt="Le collectif en action"
-      >
-      <div class="tv-card-caption">
-        <strong>Le mouvement, c'est vous.</strong>
-        <p>Co-actionnaires Valiuz qui s'impliquent, qui posent les bonnes questions, et qui ne laissent pas les décisions se prendre sans eux.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Content grid -->
-  <section style="padding-bottom: 20px;">
-    <div class="container">
-      <div class="section-label">Vos contenus</div>
-      <h2 class="section-title">Ce que vous trouverez ici.</h2>
-
-      <div class="content-grid">
-
-        <div class="content-card">
-          <div class="card-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-            </svg>
-          </div>
-          <h3>La candidature complète</h3>
-          <p>Tous les arguments, le programme, les vidéos et les visuels de FX &amp; Alexis — pensés pour être partagés facilement.</p>
-        </div>
-
-        <div class="content-card">
-          <div class="card-icon" style="color: var(--accent-2);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-            </svg>
-          </div>
-          <h3>Les vidéos de campagne</h3>
-          <p>Du spot institutionnel au format brainrot, une sélection de contenus qui explique le projet sans jamais ennuyer.</p>
-        </div>
-
-        <div class="content-card">
-          <div class="card-icon" style="color: var(--accent-3);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </div>
-          <h3>Restez informés</h3>
-          <p>Les prochaines étapes de l'élection, les dates clés et les actions concrètes que vous pouvez faire pour peser dans le vote.</p>
-        </div>
-
-        <div class="content-card">
-          <div class="card-icon" style="color: var(--accent);">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <h3>Le collectif grandit</h3>
-          <p>Chaque co-actionnaire qui rejoint le mouvement renforce la légitimité du projet. Partagez la page à un collègue.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Game CTA -->
+  <!-- 3 blocs CTA -->
   <section class="game-section">
     <div class="container">
-      <div class="game-cta-card">
-        <div class="game-cta-copy">
-          <div class="game-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/>
-            </svg>
-            Mini-jeu exclusif
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <div class="game-cta-card" style="padding:0; overflow:hidden; align-items:stretch;">
+          <img src="images/valiuz_game.png" alt="Valiuz Game" style="width:300px; object-fit:contain; flex-shrink:0; border-radius:0; background:#0a1220; padding:12px;">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:40px 36px; flex:1;">
+            <div class="game-cta-copy" style="flex:1 1 240px;">
+              <div class="game-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/>
+                </svg>
+                Mini-jeu exclusif
+              </div>
+              <h2>Faites une pause.<br>Jouez pour le collectif.</h2>
+              <p>On a créé un petit jeu 8-bit rien que pour vous. Parce qu'un mouvement qui sait aussi s'amuser, c'est un mouvement qui dure.</p>
+            </div>
+            <div class="game-cta-action" style="flex-shrink:0;">
+              <a href="https://8bits-ads.pages.dev" target="_blank" rel="noopener noreferrer" class="btn-game" id="btn-launch-game" onclick="launchGame()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Lancer le jeu
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
           </div>
-          <h2>Faites une pause.<br>Jouez pour le collectif.</h2>
-          <p>
-            On a créé un petit jeu 8-bit rien que pour vous.
-            Parce qu'un mouvement qui sait aussi s'amuser, c'est un mouvement qui dure.
-          </p>
         </div>
-        <div class="game-cta-action">
-          <a href="https://8bits-ads.pages.dev" target="_blank" rel="noopener noreferrer" class="btn-game">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"/>
+
+        <div class="game-cta-card" id="simulator-card" style="padding:0; overflow:hidden; align-items:stretch; position:relative; transition: opacity 300ms ease;">
+          <!-- Overlay de verrouillage -->
+          <div id="simulator-lock" style="display:none; position:absolute; inset:0; z-index:10; background:rgba(7,17,31,0.82); backdrop-filter:blur(6px); border-radius:inherit; align-items:center; justify-content:center; flex-direction:column; gap:14px; text-align:center; padding:32px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
-            Lancer le jeu
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
+            <p style="margin:0; color:var(--muted); font-size:0.92rem; max-width:26ch; line-height:1.6;">Jouez au mini-jeu d'abord pour débloquer le simulateur.</p>
+          </div>
+          <div style="width:300px; min-height:200px; flex-shrink:0; background:#000;"></div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:40px 36px; flex:1;">
+            <div class="game-cta-copy" style="flex:1 1 240px;">
+              <div class="game-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+                Simulateur
+              </div>
+              <h2>Et si vous simuliez<br>votre investissement&nbsp;?</h2>
+              <p>Visualisez l'évolution de votre épargne, comprenez les mécanismes du FCPE et prenez des décisions éclairées — en quelques clics.</p>
+            </div>
+            <div class="game-cta-action" style="flex-shrink:0;">
+              <a href="#" id="btn-simulator" class="btn-game">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Lancer le simulateur
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
+
+
       </div>
     </div>
   </section>
@@ -546,13 +531,53 @@ Pourlecollectif.ch
   </footer>
 
 </div>
+<div id="money-rain"></div>
+
 <script>
+  // Vérification accès
   try {
     if (localStorage.getItem('plc_done') !== 'true') {
       window.location.replace('index.html');
     }
   } catch(_) {
     window.location.replace('index.html');
+  }
+
+  const hasPlayed = localStorage.getItem('plc_game_played') === 'true';
+  const lock = document.getElementById('simulator-lock');
+  const isFirstUnlock = localStorage.getItem('plc_game_unlocked_shown') !== 'true';
+
+  // Verrouillage / déverrouillage simulateur
+  if (!hasPlayed) {
+    lock.style.display = 'flex';
+  } else if (isFirstUnlock) {
+    // Première fois qu'on revient après avoir joué → pluie de billets
+    localStorage.setItem('plc_game_unlocked_shown', 'true');
+    startMoneyRain();
+  }
+
+  function launchGame() {
+    localStorage.setItem('plc_game_played', 'true');
+  }
+
+  function startMoneyRain() {
+    const container = document.getElementById('money-rain');
+    const emojis = ['💵', '💴', '💶', '💷', '💸', '🤑', '💰'];
+    const total = 180;
+
+    for (let i = 0; i < total; i++) {
+      setTimeout(() => {
+        const bill = document.createElement('span');
+        bill.className = 'bill';
+        bill.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        bill.style.left = Math.random() * 100 + 'vw';
+        bill.style.fontSize = (1.6 + Math.random() * 2.4) + 'rem';
+        const duration = 1.8 + Math.random() * 2.4;
+        bill.style.animation = `fall ${duration}s linear forwards`;
+        container.appendChild(bill);
+        setTimeout(() => bill.remove(), duration * 1000);
+      }, Math.random() * 3000);
+    }
   }
 </script>
 </body>
