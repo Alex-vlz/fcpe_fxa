@@ -128,6 +128,11 @@
       letter-spacing: 0.02em;
     }
 
+    .yan-video-wrap {
+      margin-top: 28px;
+      width: min(100%, 320px);
+    }
+
     /* ── Panneau formulaire droite ── */
     .page {
       position: relative;
@@ -194,6 +199,34 @@
       margin-top: 6px;
     }
 
+    .perks {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 0 0 40px;
+    }
+
+    .perk {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .perk-icon {
+      font-size: 1.8rem;
+    }
+
+    .perk-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
     .subtitle {
       margin: 0 0 40px;
       color: var(--muted);
@@ -242,7 +275,7 @@
 
     input[type="email"]:focus {
       border-color: rgba(119, 231, 194, 0.5);
-      background: rgba(119, 231, 194, 0.05);
+      background: #ffffff;
       box-shadow: 0 0 0 3px rgba(119, 231, 194, 0.08);
     }
 
@@ -384,14 +417,14 @@
 </head>
 <body>
 
-  <!-- Panneau gauche : image à remplacer par la photo "personnes/horizon/jeux/machines à sous" -->
+  <!-- Panneau gauche -->
   <div class="split-image">
-    <img src="images/walk-in-ch.png" alt="Le collectif">
-    <div class="split-image-overlay">
-      <blockquote>
-        Pensez à votre retraite <em>investissez</em> sur le projet dans lequel vous contribuez quotidiennement.
-      </blockquote>
-      <cite>Pourlecollectif.ch — Co-actionnaires Valiuz</cite>
+    <video id="yan-vid" src="images/yan-ok.mp4" playsinline loop controls
+      style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+    <div id="yan-play-btn" style="position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.18);">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);border:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;transition:transform 180ms ease,background 180ms ease;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+      </div>
     </div>
   </div>
 
@@ -410,9 +443,20 @@
           <span class="site-name">Pourlecollectif.ch</span>
         </h1>
 
-        <p class="subtitle">
-          Ensemble, mobilisons les co-actionnaires autour d'un projet commun ambitieux et engagé.
-        </p>
+        <div class="perks">
+          <div class="perk">
+            <span class="perk-icon">🎁</span>
+            <span class="perk-label">Cadeaux</span>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">🎮</span>
+            <span class="perk-label">Mini-jeu</span>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">📈</span>
+            <span class="perk-label">Simulateur</span>
+          </div>
+        </div>
 
         <form class="form" onsubmit="handleSubmit(event)">
 
@@ -433,13 +477,6 @@
           <p id="email-error" class="field-error" aria-live="polite"></p>
 
           <div class="checkboxes">
-            <label class="checkbox-item">
-              <input type="checkbox" name="consent1" required>
-              <span class="checkbox-label">
-                J'accepte d'adhérer à un mouvement engagé pour favoriser le succès de notre projet commun de co-actionnaire.
-              </span>
-            </label>
-
             <label class="checkbox-item">
               <input type="checkbox" name="consent2" required>
               <span class="checkbox-label">
@@ -485,6 +522,14 @@
     }
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyw2OrHvm-K_6dZseAXXIzkRveOE6Z_X4nr6kbFgHGpjuVaiMDWjO0SZtN1MqN5ITaX0w/exec';
+
+    // Bouton play central
+    const yanVid = document.getElementById('yan-vid');
+    const yanBtn = document.getElementById('yan-play-btn');
+    yanBtn.addEventListener('click', function() {
+      yanVid.play();
+      yanBtn.style.display = 'none';
+    });
 
     async function hashEmail(email) {
       const str = email.toLowerCase().trim();
