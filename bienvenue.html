@@ -778,26 +778,34 @@
 
         <div class="game-cta-card" id="simulator-card" style="padding:0; overflow:hidden; align-items:stretch; position:relative; transition: opacity 300ms ease;">
           <!-- Overlay de verrouillage -->
-          <div id="simulator-lock" style="display:none; position:absolute; inset:0; z-index:10; background:rgba(7,17,31,0.82); backdrop-filter:blur(6px); border-radius:inherit; align-items:center; justify-content:center; flex-direction:column; gap:14px; text-align:center; padding:32px;">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div id="simulator-lock" onclick="showSimulatorSoon(event)" style="display:none; cursor:pointer; position:absolute; inset:0; z-index:10; background:rgba(7,17,31,0.82); backdrop-filter:blur(6px); border-radius:inherit; align-items:center; justify-content:center; flex-direction:column; gap:14px; text-align:center; padding:32px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:rgba(255,184,112,0.12); border:1px solid rgba(255,184,112,0.35); color:#ffb870; font-size:0.78rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">
+              ⏳ Stay tuned
+            </div>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
-            <p style="margin:0; color:var(--muted); font-size:0.92rem; max-width:26ch; line-height:1.6;">Jouez au mini-jeu d'abord pour débloquer le simulateur.</p>
+            <p style="margin:0; color:var(--muted); font-size:0.9rem; max-width:28ch; line-height:1.6;">Prochainement pour les membres du mouvement.</p>
           </div>
           <div style="width:300px; min-height:200px; flex-shrink:0; background:#000;"></div>
           <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:40px 36px; flex:1;">
             <div class="game-cta-copy" style="flex:1 1 240px;">
-              <div class="game-badge">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-                Simulateur
+              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+                <div class="game-badge">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                  Simulateur
+                </div>
+                <div style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(255,184,112,0.12); border:1px solid rgba(255,184,112,0.3); color:#ffb870; font-size:0.74rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">
+                  ⏳ Stay tuned
+                </div>
               </div>
               <h2>Et si vous simuliez<br>votre investissement&nbsp;?</h2>
               <p>Visualisez l'évolution de votre épargne, comprenez les mécanismes du FCPE et prenez des décisions éclairées — en quelques clics.</p>
             </div>
             <div class="game-cta-action" style="flex-shrink:0;">
-              <a href="#" id="btn-simulator" class="btn-game">
+              <a href="#" id="btn-simulator" class="btn-game" onclick="showSimulatorSoon(event)">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 Lancer le simulateur
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -839,16 +847,18 @@ Pourlecollectif.ch
 </div>
 
 
+
 <!-- Modal simulateur débloqué -->
 <div id="unlock-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(7,17,31,0.78); backdrop-filter:blur(10px); padding:24px;">
   <div style="position:relative; overflow:hidden; width:min(100%,460px); border-radius:32px; border:1px solid rgba(138,168,255,0.3); background:linear-gradient(140deg,rgba(14,26,44,0.99),rgba(8,16,28,0.97)); padding:48px 36px 36px; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.5);">
     <div style="position:absolute;width:300px;height:300px;top:-120px;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(138,168,255,0.18),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
-    <div style="font-size:3rem;margin-bottom:16px;">🔓</div>
-    <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3.5vw,2rem);letter-spacing:-0.05em;line-height:1.1;">Simulateur <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">débloqué&nbsp;!</span></h2>
-    <p style="color:var(--muted);font-size:0.95rem;line-height:1.72;margin:0 0 28px;">Vous avez lancé le jeu — le simulateur d'investissement est maintenant accessible. Bonne chance pour faire grimper la valeur.</p>
+    <div style="font-size:3rem;margin-bottom:16px;">🎮</div>
+    <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3.5vw,2rem);letter-spacing:-0.05em;line-height:1.1;">Bien joué&nbsp;! <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Faites grimper la valeur.</span></h2>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.72;margin:0 0 16px;">Prochainement, les membres du mouvement auront accès au simulateur d'investissement.<br><strong style="color:var(--text);">Stay tuned. 🚀</strong></p>
+    <p style="color:var(--muted);font-size:0.88rem;line-height:1.65;margin:0 0 28px;">En attendant, nos collaborateurs les plus affûtés vous permettront de faire exploser la valeur de part. Le jeu n'est que le début.</p>
     <button onclick="closeUnlock()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 24px;border-radius:999px;border:1px solid rgba(138,168,255,0.35);background:linear-gradient(135deg,rgba(138,168,255,0.18),rgba(119,231,194,0.12));color:var(--text);font-size:0.98rem;font-weight:600;cursor:pointer;transition:transform 180ms ease;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      Lancer le jeu et accéder au simulateur
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Lancer le jeu
     </button>
   </div>
 </div>
@@ -1035,19 +1045,21 @@ Pourlecollectif.ch
     localStorage.setItem('plc_game_played', 'true');
 
     if (isFirst) {
-      // Montrer la modal d'abord
       const overlay = document.getElementById('unlock-overlay');
       overlay.style.display = 'flex';
-      if (lock) lock.style.display = 'none';
     } else {
       // Déjà joué, ouvrir directement
       window.open('https://8bits-ads.pages.dev', '_blank');
     }
   }
 
+  function showSimulatorSoon(e) {
+    e.preventDefault();
+    document.getElementById('unlock-overlay').style.display = 'flex';
+  }
+
   function closeUnlock() {
     document.getElementById('unlock-overlay').style.display = 'none';
-    // Ouvrir le jeu après fermeture de la modal
     window.open('https://8bits-ads.pages.dev', '_blank');
   }
 
