@@ -819,6 +819,33 @@
     </div>
   </section>
 
+  <!-- Encart vidéo -->
+  <section style="padding-bottom: 64px;">
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; padding:24px 28px; border-radius:20px; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03);">
+        <div>
+          <p style="margin:0 0 4px; font-size:0.95rem; font-weight:600; letter-spacing:-0.02em;">Il vous manque ? Vous voulez le revoir ?</p>
+          <p style="margin:0; color:var(--muted); font-size:0.85rem;">Lancez la vidéo de Yan.</p>
+        </div>
+        <button onclick="document.getElementById('yan-modal').style.display='flex'" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:var(--text);font-size:0.88rem;font-weight:600;cursor:pointer;transition:transform 180ms ease,border-color 180ms ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Lancer la vidéo
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal vidéo Yan -->
+  <div id="yan-modal" onclick="closeYanModal(event)" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(7,17,31,0.88); backdrop-filter:blur(12px); padding:24px;">
+    <div style="position:relative; width:min(100%,680px);" onclick="event.stopPropagation()">
+      <button onclick="closeYanModal()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:var(--muted);font-size:0.88rem;cursor:pointer;display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Fermer
+      </button>
+      <video id="yan-modal-vid" src="images/yan-ready.mp4" controls playsinline style="width:100%;border-radius:20px;display:block;"></video>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -1061,6 +1088,14 @@ Pourlecollectif.ch
   function closeUnlock() {
     document.getElementById('unlock-overlay').style.display = 'none';
     window.open('https://8bits-ads.pages.dev', '_blank');
+  }
+
+  function closeYanModal(e) {
+    if (e && e.target !== document.getElementById('yan-modal')) return;
+    const modal = document.getElementById('yan-modal');
+    const vid = document.getElementById('yan-modal-vid');
+    vid.pause();
+    modal.style.display = 'none';
   }
 
   function startMoneyRain() {
