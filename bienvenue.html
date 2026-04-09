@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bienvenue — Pourlecollectif.ch</title>
+  <meta name="description" content="Bienvenue dans le mouvement Pourlecollectif.ch. Accédez à vos contenus exclusifs.">
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(10, 20, 36, 0.72);
+      --text: #f4f7fb;
+      --muted: #9ba9c2;
+      --muted-strong: #cad5e7;
+      --accent: #77e7c2;
+      --accent-2: #8aa8ff;
+      --accent-3: #ffb870;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      --radius: 28px;
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(138, 168, 255, 0.18), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(119, 231, 194, 0.13), transparent 24%),
+        radial-gradient(circle at 50% 120%, rgba(255, 184, 112, 0.08), transparent 28%),
+        linear-gradient(180deg, #07111f 0%, #0a1220 26%, #08131d 100%);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(138, 168, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138, 168, 255, 0.07) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at center, #000 32%, transparent 84%);
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    ::selection { background: rgba(138, 168, 255, 0.36); color: #fff; }
+
+    a { color: inherit; text-decoration: none; }
+    img, video { display: block; max-width: 100%; }
+
+    .page { position: relative; z-index: 1; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5, 11, 20, 0.72);
+      backdrop-filter: blur(22px) saturate(145%);
+    }
+
+    .topbar-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(138, 168, 255, 0.42);
+    }
+
+    .brand-copy strong {
+      font-size: 0.95rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(119, 231, 194, 0.28);
+      background: rgba(119, 231, 194, 0.08);
+      font-size: 0.88rem;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: rgba(119, 231, 194, 0.56);
+      background: rgba(119, 231, 194, 0.14);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 72px 0 56px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted-strong);
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(138, 168, 255, 0.5);
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-lead {
+      margin: 0 auto 40px;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* ── TV Image card ── */
+    .tv-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(140deg, rgba(12,22,38,0.96), rgba(7,14,26,0.88));
+      box-shadow: var(--shadow);
+      margin-bottom: 64px;
+    }
+
+    .tv-card img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tv-card-caption {
+      padding: 24px 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .tv-card-caption strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .tv-card-caption p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── Content grid ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 30px; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .section-title {
+      margin: 0 0 40px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .content-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
+        rgba(255,255,255,0.02);
+      padding: 28px;
+      transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .content-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.14);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      margin-bottom: 18px;
+      color: var(--accent);
+    }
+
+    .content-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+    }
+
+    .content-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* ── Game CTA ── */
+    .game-section {
+      margin-bottom: 80px;
+    }
+
+    .game-cta-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid rgba(119, 231, 194, 0.2);
+      background: linear-gradient(140deg, rgba(119, 231, 194, 0.07), rgba(138, 168, 255, 0.05));
+      padding: 52px 48px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px;
+      justify-content: space-between;
+    }
+
+    .game-cta-card::before {
+      content: "";
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      top: -200px; right: -100px;
+      background: radial-gradient(circle, rgba(119, 231, 194, 0.15), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .game-cta-copy {
+      position: relative;
+      z-index: 1;
+      flex: 1 1 300px;
+    }
+
+    .game-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(119, 231, 194, 0.12);
+      border: 1px solid rgba(119, 231, 194, 0.25);
+      color: var(--accent);
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .game-cta-copy h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .game-cta-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      max-width: 48ch;
+    }
+
+    .game-cta-action {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .btn-game {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(119, 231, 194, 0.4);
+      background: linear-gradient(135deg, rgba(119, 231, 194, 0.2), rgba(138, 168, 255, 0.14));
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn-game:hover {
+      transform: translateY(-2px);
+      border-color: rgba(119, 231, 194, 0.7);
+      background: linear-gradient(135deg, rgba(119, 231, 194, 0.28), rgba(138, 168, 255, 0.2));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    .btn-game:hover { text-decoration: none; }
+
+    /* ── Pluie de billets ── */
+    #money-rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    .bill {
+      position: absolute;
+      top: -80px;
+      font-size: 2.4rem;
+      animation: fall linear forwards;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg) scale(0.8); opacity: 0; }
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── Confettis ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    /* ── Modal cadeau ── */
+    #gift-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7, 17, 31, 0.72);
+      backdrop-filter: blur(8px);
+      padding: 24px;
+      transition: opacity 0.3s ease;
+    }
+
+    .gift-card {
+      position: relative;
+      overflow: hidden;
+      width: min(100%, 520px);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 184, 112, 0.35);
+      background: linear-gradient(140deg, rgba(14, 26, 44, 0.98), rgba(8, 16, 28, 0.95));
+      box-shadow: 0 40px 100px rgba(0,0,0,0.4), 0 0 60px rgba(255,184,112,0.12);
+      padding: 48px 40px 40px;
+      text-align: center;
+      transform: scale(0.88);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .gift-card::before {
+      content: "";
+      position: absolute;
+      width: 320px; height: 320px;
+      top: -140px; left: 50%; transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,184,112,0.18), transparent 70%);
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .dollar-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      box-shadow: 0 0 40px rgba(255,184,112,0.45);
+      font-size: 2.6rem;
+      margin: 0 auto 24px;
+      animation: pulse 2s ease-in-out 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(255,184,112,0.45); }
+      50%       { box-shadow: 0 0 70px rgba(255,184,112,0.7); }
+    }
+
+    .gift-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .gift-card h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gift-card p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.72;
+    }
+
+    .gift-ticket {
+      margin: 0 0 28px;
+      padding: 20px 24px;
+      border-radius: 18px;
+      border: 2px dashed rgba(255,184,112,0.4);
+      background: rgba(255,184,112,0.05);
+      font-size: 0.88rem;
+      color: var(--muted-strong);
+      line-height: 1.6;
+    }
+
+    .gift-ticket strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .btn-clip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.4);
+      background: linear-gradient(135deg, rgba(255,184,112,0.18), rgba(255,140,58,0.12));
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      margin-bottom: 16px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-clip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,184,112,0.7);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .btn-close-gift {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .btn-close-gift:hover { color: var(--text); }
+
+    /* ── Badge dollar sur la page ── */
+    #dollar-badge-wrap {
+      display: none;
+      margin: 24px auto 0;
+      width: fit-content;
+    }
+
+    #dollar-badge-wrap.visible {
+      display: block;
+    }
+
+    #dollar-badge-wrap.visible {
+      display: block;
+      animation: badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+
+    @keyframes badgePop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    #dollar-badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.5);
+      background: linear-gradient(135deg, rgba(255,184,112,0.2), rgba(255,140,58,0.14));
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 24px rgba(255,184,112,0.2);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    #dollar-badge-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3), 0 0 40px rgba(255,184,112,0.3);
+    }
+
+    /* ── Justificatif overlay ── */
+    #justif-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7,17,31,0.8);
+      backdrop-filter: blur(10px);
+      padding: 24px;
+    }
+
+    .justif-card {
+      width: min(100%, 480px);
+      border-radius: 24px;
+      border: 2px dashed rgba(255,184,112,0.5);
+      background: linear-gradient(140deg, rgba(14,26,44,0.99), rgba(8,16,28,0.97));
+      padding: 40px 36px;
+      text-align: center;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    }
+
+    .justif-card .justif-dollar {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .justif-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+    }
+
+    .justif-card h3 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffb870, #ff8c3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .justif-ref {
+      display: inline-block;
+      margin: 16px 0;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: rgba(255,184,112,0.08);
+      border: 1px solid rgba(255,184,112,0.25);
+      font-family: monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      color: #ffb870;
+    }
+
+    .justif-card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin: 0 0 24px;
+    }
+
+    .justif-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-justif-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,184,112,0.4);
+      background: linear-gradient(135deg, rgba(255,184,112,0.18), rgba(255,140,58,0.12));
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease;
+    }
+
+    .btn-justif-share:hover { transform: translateY(-1px); }
+
+    .btn-justif-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 48px 0 40px; }
+      .game-cta-card { padding: 36px 24px; }
+      .tv-card img { max-height: 280px; }
+      .gift-card { padding: 36px 24px 28px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-copy">
+          <strong>Pourlecollectif.ch</strong>
+          <span>Espace membres</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Bienvenue dans le mouvement
+      </div>
+      <h1>Vous faites partie<br>du <em>mouvement.</em></h1>
+      <p class="hero-lead">
+        Ici, pas de grande messe ni de rapport annuel de 80 pages.
+        Juste des contenus utiles, un peu décalés, pour rester au courant et s'impliquer quand ça compte.
+      </p>
+      <div id="dollar-badge-wrap">
+        <button id="dollar-badge-btn" onclick="showJustif()">
+          💵 Récupérer Mon Dollar.ch
+        </button>
+      </div>
+      <div style="margin-top:16px;">
+        <button id="btn-reopen-gift" onclick="openGift()" style="display:none;background:none;border:none;color:var(--muted);font-size:0.85rem;cursor:pointer;text-decoration:underline;">
+          🎁 Activer mon cadeau de bienvenue
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 blocs CTA -->
+  <section class="game-section">
+    <div class="container">
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <div class="game-cta-card" style="padding:0; overflow:hidden; align-items:stretch;">
+          <img src="images/valiuz_game.png" alt="Valiuz Game" style="width:300px; object-fit:contain; flex-shrink:0; border-radius:0; background:#0a1220; padding:12px;">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:40px 36px; flex:1;">
+            <div class="game-cta-copy" style="flex:1 1 240px;">
+              <div class="game-badge">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/>
+                </svg>
+                Mini-jeu exclusif
+              </div>
+              <h2>Ne perdez pas de temps.<br>Faites grimper la valeur.</h2>
+              <p>Nos collaborateurs les plus affûtés vous permettent de faire exploser la valeur de part.</p>
+            </div>
+            <div class="game-cta-action" style="flex-shrink:0;">
+              <a href="#" class="btn-game" id="btn-launch-game" onclick="launchGame(event)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Lancer le jeu
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-cta-card" id="simulator-card" style="padding:0; overflow:hidden; align-items:stretch; position:relative; transition: opacity 300ms ease;">
+          <!-- Overlay de verrouillage -->
+          <div id="simulator-lock" onclick="showSimulatorSoon(event)" style="display:none; cursor:pointer; position:absolute; inset:0; z-index:10; background:rgba(7,17,31,0.82); backdrop-filter:blur(6px); border-radius:inherit; align-items:center; justify-content:center; flex-direction:column; gap:14px; text-align:center; padding:32px;">
+            <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:rgba(255,184,112,0.12); border:1px solid rgba(255,184,112,0.35); color:#ffb870; font-size:0.78rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">
+              ⏳ Stay tuned
+            </div>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <p style="margin:0; color:var(--muted); font-size:0.9rem; max-width:28ch; line-height:1.6;">Prochainement pour les membres du mouvement.</p>
+          </div>
+          <div style="width:300px; min-height:200px; flex-shrink:0; background:#000;"></div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:24px; padding:40px 36px; flex:1;">
+            <div class="game-cta-copy" style="flex:1 1 240px;">
+              <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+                <div class="game-badge">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                  </svg>
+                  Simulateur
+                </div>
+                <div style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:rgba(255,184,112,0.12); border:1px solid rgba(255,184,112,0.3); color:#ffb870; font-size:0.74rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;">
+                  ⏳ Stay tuned
+                </div>
+              </div>
+              <h2>Et si vous simuliez<br>votre investissement&nbsp;?</h2>
+              <p>Visualisez l'évolution de votre épargne, comprenez les mécanismes du FCPE et prenez des décisions éclairées — en quelques clics.</p>
+            </div>
+            <div class="game-cta-action" style="flex-shrink:0;">
+              <a href="#" id="btn-simulator" class="btn-game" onclick="showSimulatorSoon(event)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Lancer le simulateur
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      Pourlecollectif.ch &mdash; Un projet co-actionnaires Valiuz &middot;
+Pourlecollectif.ch
+    </div>
+  </footer>
+
+</div>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Modal cadeau de bienvenue -->
+<div id="gift-overlay">
+  <div class="gift-card">
+    <div class="dollar-badge">💵</div>
+    <h2><em>Mon premier dollar.ch</em></h2>
+    <p>Pour récupérer ce dollar je dois activer ce cadeau.</p>
+    <button class="btn-clip" onclick="activateGift()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      Activer mon cadeau
+    </button>
+    <button class="btn-close-gift" onclick="closeGift()">Plus tard</button>
+  </div>
+</div>
+
+
+
+<!-- Modal simulateur débloqué -->
+<div id="unlock-overlay" style="display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; background:rgba(7,17,31,0.78); backdrop-filter:blur(10px); padding:24px;">
+  <div style="position:relative; overflow:hidden; width:min(100%,460px); border-radius:32px; border:1px solid rgba(138,168,255,0.3); background:linear-gradient(140deg,rgba(14,26,44,0.99),rgba(8,16,28,0.97)); padding:48px 36px 36px; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.5);">
+    <div style="position:absolute;width:300px;height:300px;top:-120px;left:50%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(138,168,255,0.18),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
+    <div style="font-size:3rem;margin-bottom:16px;">🎮</div>
+    <h2 style="margin:0 0 12px;font-size:clamp(1.5rem,3.5vw,2rem);letter-spacing:-0.05em;line-height:1.1;">Bien joué&nbsp;! <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Faites grimper la valeur.</span></h2>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.72;margin:0 0 16px;">Prochainement, les membres du mouvement auront accès au simulateur d'investissement.<br><strong style="color:var(--text);">Stay tuned. 🚀</strong></p>
+    <p style="color:var(--muted);font-size:0.88rem;line-height:1.65;margin:0 0 28px;">En attendant, nos collaborateurs les plus affûtés vous permettront de faire exploser la valeur de part. Le jeu n'est que le début.</p>
+    <button onclick="closeUnlock()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 24px;border-radius:999px;border:1px solid rgba(138,168,255,0.35);background:linear-gradient(135deg,rgba(138,168,255,0.18),rgba(119,231,194,0.12));color:var(--text);font-size:0.98rem;font-weight:600;cursor:pointer;transition:transform 180ms ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Lancer le jeu
+    </button>
+  </div>
+</div>
+
+<!-- Justificatif -->
+<div id="justif-overlay">
+  <div class="justif-card">
+    <span class="justif-dollar">💵</span>
+    <h3><em>Mon premier dollar.ch</em></h3>
+    <div class="justif-ref" id="justif-ref">PLCB-000000</div>
+    <p>Présentez ce justificatif à un membre fondateur du mouvement pour récupérer votre cadeau de bienvenue.</p>
+    <div class="justif-actions">
+      <button class="btn-justif-share" onclick="shareJustif()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Partager / copier le lien
+      </button>
+      <button class="btn-justif-close" onclick="hideJustif()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<div id="money-rain"></div>
+
+<script>
+  // Vérification accès
+  try {
+    if (localStorage.getItem('plc_done') !== 'true') {
+      window.location.replace('index.html');
+    }
+  } catch(_) {
+    window.location.replace('index.html');
+  }
+
+  // ── Confettis ──
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  let pieces = [];
+  let animating = false;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function launchConfetti() {
+    const colors = ['#ffb870','#77e7c2','#8aa8ff','#ff6b6b','#ffd700','#ff8c3a','#ffffff'];
+    for (let i = 0; i < 220; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: -10 - Math.random() * 200,
+        w: 8 + Math.random() * 8,
+        h: 4 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 4,
+        vy: 2 + Math.random() * 4,
+        rot: Math.random() * Math.PI * 2,
+        vrot: (Math.random() - 0.5) * 0.2,
+        opacity: 1,
+      });
+    }
+    if (!animating) animateConfetti();
+  }
+
+  function animateConfetti() {
+    animating = true;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces = pieces.filter(p => p.opacity > 0.05);
+    pieces.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vrot;
+      if (p.y > canvas.height * 0.75) p.opacity -= 0.018;
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    });
+    if (pieces.length > 0) requestAnimationFrame(animateConfetti);
+    else { animating = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  }
+
+  // ── Cadeau ──
+  const giftOverlay = document.getElementById('gift-overlay');
+  const giftActivated = localStorage.getItem('plc_gift_activated') === 'true';
+
+  function openGift() {
+    giftOverlay.style.display = 'flex';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        giftOverlay.style.opacity = '1';
+        giftOverlay.querySelector('.gift-card').style.transform = 'scale(1)';
+      });
+    });
+  }
+
+  if (!giftActivated) {
+    setTimeout(() => {
+      launchConfetti();
+      openGift();
+    }, 400);
+  }
+
+  // Génère un code unique par appareil
+  function getRef() {
+    let ref = localStorage.getItem('plc_dollar_ref');
+    if (!ref) {
+      ref = 'PLCB-' + Math.random().toString(36).substring(2,8).toUpperCase();
+      localStorage.setItem('plc_dollar_ref', ref);
+    }
+    return ref;
+  }
+
+  function activateGift() {
+    localStorage.setItem('plc_gift_activated', 'true');
+    closeGift();
+    showBadge();
+    document.getElementById('btn-reopen-gift').style.display = 'none';
+  }
+
+  function closeGift() {
+    giftOverlay.style.opacity = '0';
+    giftOverlay.querySelector('.gift-card').style.transform = 'scale(0.88)';
+    setTimeout(() => giftOverlay.style.display = 'none', 300);
+    // Si pas encore activé, afficher le bouton rouvrir
+    if (localStorage.getItem('plc_gift_activated') !== 'true') {
+      document.getElementById('btn-reopen-gift').style.display = 'inline-flex';
+    }
+  }
+
+  function showBadge() {
+    const wrap = document.getElementById('dollar-badge-wrap');
+    wrap.classList.add('visible');
+  }
+
+  function showJustif() {
+    document.getElementById('justif-ref').textContent = getRef();
+    const overlay = document.getElementById('justif-overlay');
+    overlay.style.display = 'flex';
+  }
+
+  function hideJustif() {
+    document.getElementById('justif-overlay').style.display = 'none';
+  }
+
+  function shareJustif() {
+    const ref = getRef();
+    const text = `Mon premier dollar.ch — Référence : ${ref} — ${window.location.href}`;
+    if (navigator.share) {
+      navigator.share({ title: 'Mon premier dollar.ch', text });
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.btn-justif-share');
+        btn.textContent = '✓ Copié !';
+        setTimeout(() => btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Partager / copier le lien`, 2000);
+      });
+    }
+  }
+
+  // Afficher le badge si déjà activé
+  if (localStorage.getItem('plc_gift_activated') === 'true') {
+    showBadge();
+  }
+
+  // ── Simulateur verrouillage ──
+  const hasPlayed = localStorage.getItem('plc_game_played') === 'true';
+  const lock = document.getElementById('simulator-lock');
+  const isFirstUnlock = localStorage.getItem('plc_game_unlocked_shown') !== 'true';
+
+  if (!hasPlayed) {
+    lock.style.display = 'flex';
+  } else if (isFirstUnlock) {
+    localStorage.setItem('plc_game_unlocked_shown', 'true');
+    startMoneyRain();
+  }
+
+  function launchGame(e) {
+    e.preventDefault();
+    const isFirst = localStorage.getItem('plc_game_played') !== 'true';
+    localStorage.setItem('plc_game_played', 'true');
+
+    if (isFirst) {
+      const overlay = document.getElementById('unlock-overlay');
+      overlay.style.display = 'flex';
+    } else {
+      // Déjà joué, ouvrir directement
+      window.open('https://8bits-ads.pages.dev', '_blank');
+    }
+  }
+
+  function showSimulatorSoon(e) {
+    e.preventDefault();
+    document.getElementById('unlock-overlay').style.display = 'flex';
+  }
+
+  function closeUnlock() {
+    document.getElementById('unlock-overlay').style.display = 'none';
+    window.open('https://8bits-ads.pages.dev', '_blank');
+  }
+
+  function startMoneyRain() {
+    const container = document.getElementById('money-rain');
+    const emojis = ['💵', '💴', '💶', '💷', '💸', '🤑', '💰'];
+    const total = 180;
+    for (let i = 0; i < total; i++) {
+      setTimeout(() => {
+        const bill = document.createElement('span');
+        bill.className = 'bill';
+        bill.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        bill.style.left = Math.random() * 100 + 'vw';
+        bill.style.fontSize = (1.6 + Math.random() * 2.4) + 'rem';
+        const duration = 1.8 + Math.random() * 2.4;
+        bill.style.animation = `fall ${duration}s linear forwards`;
+        container.appendChild(bill);
+        setTimeout(() => bill.remove(), duration * 1000);
+      }, Math.random() * 3000);
+    }
+  }
+</script>
+</body>
+</html>
